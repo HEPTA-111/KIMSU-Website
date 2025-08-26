@@ -1,0 +1,364 @@
+/* css/main.css
+   Reworked and polished for KIMSU Specialist Centre
+   Uses palette provided by user (warm browns + accent blue)
+*/
+
+/* ---------- Palette (user-provided) ---------- */
+:root {
+  /* --- Light Mode Palette --- */
+  --c-bg: #FAF8F5;              /* Warm cream background */
+  --c-surface: #FFFFFF;         /* Pure white for cards/headers */
+  --c-text: #2C1810;            /* Deep brown for text */
+  --c-text-muted: #8B6F47;      /* Warm brown for muted text */
+  --c-accent: #2E86AB;          /* Professional blue */
+  --c-border: #E8DDD4;          /* Light cream border */
+  --c-secondary: #A0522D;       /* Warm brown accent */
+
+  /* --- Dark Mode Palette --- */
+  --c-dark-bg: #1A1611;         /* Deep warm dark */
+  --c-dark-surface: #2A241E;    /* Warmer dark surface */
+  --c-dark-text: #F0EDE8;       /* Warm light text */
+  --c-dark-text-muted: #B89968; /* Warm muted text */
+  --c-dark-accent: #5BA3D4;     /* Lighter blue for contrast */
+  --c-dark-border: #3D342A;     /* Warm dark border */
+  --c-dark-secondary: #D2691E;  /* Warm orange accent */
+
+  /* --- Base Styles --- */
+  --transition: 0.28s ease;
+  --radius: 8px;
+  --shadow: 0 4px 16px rgba(44, 24, 16, 0.06);
+  --shadow-hover: 0 10px 36px rgba(44, 24, 16, 0.10);
+  --max-width: 1120px;
+  --container-pad: 1.25rem;
+  --text-base: 16px;
+  color-scheme: light dark;
+}
+
+/* Dark theme override (applied when data-theme="dark" on body) */
+[data-theme="dark"], .theme-dark {
+  --c-bg: var(--c-dark-bg);
+  --c-surface: var(--c-dark-surface);
+  --c-text: var(--c-dark-text);
+  --c-text-muted: var(--c-dark-text-muted);
+  --c-accent: var(--c-dark-accent);
+  --c-border: var(--c-dark-border);
+  --c-secondary: var(--c-dark-secondary);
+  --shadow: 0 6px 22px rgba(0,0,0,0.55);
+}
+
+/* ---------- Reset / base ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:var(--c-bg);
+  color:var(--c-text);
+  font-size:var(--text-base);
+  line-height:1.5;
+  display:flex;
+  flex-direction:column; /* keeps footer at bottom */
+  min-height:100vh;
+}
+a{color:inherit}
+img{max-width:100%; display:block}
+.wrap{
+  width:100%;
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 var(--container-pad);
+}
+
+/* ---------- Header ---------- */
+.header{
+  position:sticky;
+  top:0;
+  z-index:1100;
+  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45));
+  border-bottom: 1px solid var(--c-border);
+  backdrop-filter: blur(6px);
+}
+.theme-dark .header{
+  background: linear-gradient(180deg, rgba(26,22,17,0.95), rgba(26,22,17,0.85));
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:0.8rem 0;
+}
+.logo img{height:44px; display:block}
+.nav ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; gap:0.75rem; align-items:center;
+}
+.nav a{
+  text-decoration:none;
+  padding:0.5rem 0.7rem;
+  border-radius:6px;
+  font-weight:600;
+  color:var(--c-text);
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  display:inline-block;
+}
+.nav a:hover{
+  background:var(--c-surface);
+  color:var(--c-accent);
+  transform:translateY(-2px);
+}
+.nav a.active{
+  color:var(--c-accent);
+  box-shadow: inset 0 -2px 0 var(--c-accent);
+}
+
+/* Mobile toggle */
+.btn-icon{background:none;border:0; cursor:pointer; font-size:1.05rem; padding:0.4rem; color:var(--c-text)}
+.mobile-only{display:none}
+
+/* ---------- Buttons & link primitives ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:0.5rem;
+  background:var(--c-secondary);
+  color:var(--c-surface);
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:var(--shadow);
+  border:0;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+.btn:hover{transform:translateY(-4px); box-shadow:var(--shadow-hover)}
+.btn:active{transform:translateY(-1px)}
+
+.btn.outline{
+  background:transparent;
+  color:var(--c-secondary);
+  border:1px solid var(--c-border);
+  font-weight:700;
+  box-shadow:none;
+}
+.btn.small{padding:6px 10px; font-size:0.95rem}
+
+/* Generic inline link (learn more / book / contact) */
+.link, a.link {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--c-accent);
+  text-decoration:none;
+  font-weight:700;
+  padding:6px 8px;
+  border-radius:6px;
+  transition: background var(--transition), transform var(--transition);
+}
+.link:hover{background:rgba(46,134,171,0.06); transform:translateY(-2px)}
+
+/* Muted link style used for secondary inline links */
+.link-muted{
+  color:var(--c-text-muted);
+  font-weight:600;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:56vh;
+  display:grid; align-items:center; position:relative;
+  background-size:cover; background-position:center;
+  border-bottom:1px solid var(--c-border);
+  margin-bottom:1.25rem;
+}
+.hero .overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(44,24,16,0.12), rgba(44,24,16,0.08));
+  pointer-events:none; border-radius:0;
+}
+.hero-content{
+  position:relative; padding:3.25rem 0; color:var(--c-text);
+}
+.hero h1{font-size:2.25rem; margin:0 0 0.4rem; color:var(--c-text)}
+.hero .lead{font-size:1rem; color:var(--c-text-muted); margin-bottom:1rem}
+.hero-actions{display:flex; gap:0.75rem; flex-wrap:wrap}
+
+/* ---------- Sections & grids ---------- */
+section{padding:1.25rem 0}
+h2{font-size:1.15rem; margin:0 0 0.65rem; color:var(--c-text)}
+p{margin:0 0 0.8rem; color:var(--c-text)}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.1rem;
+}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
+@media (max-width:980px){.grid-3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr} .mobile-only{display:inline-block} .nav{display:none}}
+
+/* ---------- Cards / services / team ---------- */
+.card, .team-card, .service-card, .doctor-card, .contact-card {
+  background:var(--c-surface);
+  border-radius:var(--radius);
+  padding:1.05rem;
+  border:1px solid var(--c-border);
+  box-shadow:var(--shadow);
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.card:hover, .team-card:hover, .service-card:hover, .doctor-card:hover {transform:translateY(-6px); box-shadow:var(--shadow-hover)}
+
+.pillar i, .why-card i {font-size:1.5rem; color:var(--c-secondary); margin-bottom:0.5rem}
+
+/* Team card */
+.team-card img{width:100%; height:170px; object-fit:cover; border-radius:6px}
+.team-card h4{margin:0.6rem 0 0.25rem}
+
+/* Doctor card layout */
+.doctor-card{display:flex; gap:0.9rem; align-items:center}
+.doctor-card img{width:96px; height:96px; object-fit:cover; border-radius:8px; flex-shrink:0}
+.doctor-card h3{margin:0 0 0.2rem; font-size:1rem}
+.doctor-card p{margin:0; color:var(--c-text-muted); font-size:0.95rem}
+.doctor-card .link{margin-top:0.45rem}
+
+/* Make doctor cards vertical on mobile */
+@media (max-width:700px){ .doctor-card{flex-direction:row; align-items:center} .doctor-card img{width:84px;height:84px} }
+
+/* ---------- Why / CTA / urgent ---------- */
+.why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.why-card{padding:1rem; border-radius:10px}
+@media (max-width:900px){.why-grid{grid-template-columns:1fr}}
+
+.cta-card{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:1.1rem; border-radius:12px; background:linear-gradient(90deg, rgba(160,82,45,0.03), rgba(46,134,171,0.02));
+  border:1px solid var(--c-border);
+  box-shadow:var(--shadow);
+}
+.cta-card h2{margin:0; font-size:1.05rem}
+.cta-actions{display:flex; gap:0.7rem}
+@media (max-width:820px){ .cta-card{flex-direction:column; text-align:center} }
+
+/* specific urgent block styling to match your content */
+.urgent{
+  display:flex; gap:1rem; align-items:center; padding:0.9rem; border-radius:10px; background:var(--c-surface);
+  border:1px solid var(--c-border); box-shadow:var(--shadow);
+}
+
+/* ---------- Contact / map / forms ---------- */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+
+.contact-card h2{margin-top:0}
+.contact-card p{margin:0.5rem 0}
+.social-links a{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:transparent; border:1px solid var(--c-border); margin-right:0.5rem; color:var(--c-text-muted); text-decoration:none}
+.social-links a:hover{background:var(--c-secondary); color:var(--c-surface); transform:translateY(-3px)}
+
+/* map container */
+.map-container{border-radius:10px; overflow:hidden; height:250px; border:1px solid var(--c-border); box-shadow:var(--shadow)}
+.map-container iframe{width:100%; height:100%; border:0; display:block}
+
+/* Forms */
+form{background:transparent}
+.form-row{display:flex; gap:0.8rem}
+.form-row input, .form-row textarea, form input[type="text"], form input[type="email"], form input[type="tel"], form select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid var(--c-border);
+  background:var(--c-surface);
+  color:var(--c-text);
+  font-size:0.96rem;
+  transition:box-shadow var(--transition), border-color var(--transition);
+}
+form input:focus, form textarea:focus, form select:focus{
+  outline:none; border-color:var(--c-accent); box-shadow:0 6px 22px rgba(46,134,171,0.08);
+}
+.form-row .full{flex-basis:100%}
+@media (max-width:700px){ .form-row{flex-direction:column} }
+
+/* form submit */
+.inquire-btn, form button[type="submit"]{display:inline-flex; align-items:center; justify-content:center; gap:0.5rem}
+.inquire-btn{background:var(--c-secondary); color:var(--c-surface)}
+
+/* ---------- Modal (appointments) ---------- */
+.modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,8,0.42); z-index:2000}
+.modal[aria-hidden="false"]{display:flex}
+.modal-panel{background:var(--c-surface); padding:1.1rem; border-radius:12px; width:100%; max-width:540px; border:1px solid var(--c-border); box-shadow:var(--shadow)}
+.modal-close{background:none;border:0; font-size:1.35rem; position:absolute; right:1rem; top:1rem; color:var(--c-text)}
+
+/* ---------- Footer ---------- */
+.footer{
+  border-top:1px solid var(--c-border);
+  margin-top:auto;
+  background:transparent;
+  padding:1rem 0;
+}
+.foot-bottom{
+  display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  max-width:var(--max-width); margin:0 auto; padding:0 var(--container-pad);
+  color:var(--c-text-muted); font-size:0.95rem;
+}
+.foot-bottom a{color:var(--c-text-muted); text-decoration:none; font-weight:600}
+.foot-bottom a:hover{color:var(--c-accent)}
+@media (max-width:700px){ .foot-bottom{flex-direction:column; text-align:center} }
+
+/* ---------- Back to top ---------- */
+.back-to-top{
+  position:fixed; right:1rem; bottom:1rem; display:none; padding:10px 12px; border-radius:10px; border:0;
+  background:var(--c-accent); color:var(--c-surface); box-shadow:var(--shadow); cursor:pointer; z-index:1200;
+}
+
+/* ---------- Animations / reveal ---------- */
+[data-animate]{opacity:0; transform:translateY(8px); transition:opacity 360ms cubic-bezier(.2,.9,.2,1), transform 360ms cubic-bezier(.2,.9,.2,1)}
+[data-animate].in-view{opacity:1; transform:none}
+
+/* slight hover emphasis for interactive elements */
+a:hover, button:hover{transition:all var(--transition)}
+
+/* ---------- Utility helpers ---------- */
+.center{text-align:center}
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* ---------- Accessibility small print ---------- */
+input[aria-invalid="true"], textarea[aria-invalid="true"]{border-color:#e03b3b; box-shadow:0 6px 20px rgba(224,59,59,0.08)}
+
+/* ---------- Small page-specific fixes ---------- */
+
+/* ensure the view-all button has breathing room */
+.view-all-wrap {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+/* compact button variant used for inline CTAs */
+.btn.small {
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  border-radius: 9px;
+  box-shadow: 0 6px 18px rgba(44,24,16,0.06);
+}
+
+/* make CTA layout wrap nicely on small screens */
+.cta-card {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.cta-card > div:first-child {flex:1 1 360px}
+
+/* ensure hero content does not overflow on small screens */
+.hero-content { max-width: 980px; }
+
+/* tighten team card paragraphs so the preview is compact */
+.team-card p { color: var(--c-text-muted); font-size:0.95rem; margin-top:0.45rem; }
+
+/* compact why-card spacing on small screens */
+@media (max-width:700px) {
+  .hero h1 { font-size:1.8rem; }
+  .hero .lead { font-size:0.95rem; }
+  .btn.small { padding:8px 12px; font-size:0.95rem; }
+  .view-all-wrap { margin-top:1rem; }
+}

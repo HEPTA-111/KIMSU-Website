@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Appointments — KIMSU</title>
+  <meta name="description" content="Book an appointment at KIMSU Specialist Centre" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="theme-light">
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="logo" href="index.html"><img src="assets/images/logo-kimsu.svg" alt="KIMSU"></a>
+      <nav class="nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button id="btn-theme-5" class="btn-icon" aria-label="Toggle theme"><i class="fa fa-moon"></i></button>
+        <button id="btn-nav-5" class="btn-icon mobile-only" aria-label="Open menu"><i class="fa fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="page-header" data-animate>
+      <h1>Book an appointment</h1>
+      <p>Fill the form and our team will contact you to confirm the slot.</p>
+    </section>
+
+    <section class="appointment-form" data-animate>
+      <form id="appointmentPageForm" action="https://formspree.io/f/your-id" method="POST" novalidate>
+        <div class="form-grid">
+          <label><span>Name</span><input type="text" name="name" required></label>
+          <label><span>Phone</span><input type="tel" name="phone" required></label>
+          <label><span>Email</span><input type="email" name="email" ></label>
+          <label><span>Preferred date</span><input type="date" name="date"></label>
+          <label><span>Service</span>
+            <select name="service">
+              <option>Urology Consultation</option>
+              <option>Endoscopy</option>
+              <option>Follow-up</option>
+            </select>
+          </label>
+          <label class="full"><span>Notes</span><textarea name="notes" rows="4"></textarea></label>
+        </div>
+
+        <div class="center">
+          <button type="submit" class="btn">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-bottom">&copy; <span id="year5"></span> KIMSU Specialist Centre</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
