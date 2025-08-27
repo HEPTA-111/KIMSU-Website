@@ -1,38 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Privacy — KIMSU Specialist Centre</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Privacy & Data — KIMSU Specialist Centre</title>
+  <meta name="description" content="How KIMSU collects, uses and protects patient and website visitor data.">
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body class="theme-light">
-  <header class="header">
+
+  <header class="header" role="banner">
     <div class="wrap header-inner">
-      <a class="logo" href="index.html"><img src="assets/images/logo-kimsu.svg" alt="KIMSU"></a>
-      <nav class="nav" aria-label="Main">
+      <a class="logo" href="index.html" aria-label="KIMSU Specialist Centre">
+        <img src="assets/images/logo-kimsu.svg" alt="KIMSU logo">
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li><li><a href="doctors.html">Doctors</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="page-header"><h1>Privacy & Data</h1><p>We respect your privacy. Patient data is not stored on this site.</p></section>
-
-    <section>
-      <h2>What we collect</h2>
-      <p>Contact form entries (name, phone, email, notes) are sent to our secure inbox (Formspree or your chosen backend). Do not include sensitive medical information via the contact form; call the hospital for urgent matters.</p>
-      <h2>Cookies</h2>
-      <p>We use minimal cookies for theme preference and analytics. You may opt out.</p>
-      <h2>Contact</h2>
-      <p>For privacy questions email <a href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a></p>
+  <main class="wrap" role="main">
+    <section class="page-header" data-animate>
+      <h1>Privacy & Data</h1>
+      <p class="lead">We respect your privacy and take steps to keep patient and visitor information safe. This page explains what we collect, why, and how you can exercise your rights.</p>
     </section>
-  </main>
 
-  <footer class="footer"><div class="wrap foot-bottom">&copy; <span id="year7"></span> KIMSU Specialist Centre</div></footer>
+    <!-- Overview -->
+    <section class="policy-overview card" data-animate>
+      <h2>Quick overview</h2>
+      <p>We collect the minimum information needed to provide care and run our clinic. We do not store sensitive medical records on this public website. Contact forms are forwarded securely to our clinic inbox or your configured backend (e.g. Formspree). For clinical records and test results we store and protect data within our clinical systems — not on this website.</p>
+    </section>
+
+    <!-- Policy grid -->
+    <section class="policy-grid" data-animate>
+      <div class="card">
+        <h3>What we collect</h3>
+        <ul class="muted-list">
+          <li><strong>Contact form data:</strong> name, phone, email, short message — used to respond and arrange appointments.</li>
+          <li><strong>Appointment requests:</strong> preferred date, service and non-sensitive notes to schedule visits.</li>
+          <li><strong>Technical logs:</strong> server logs and analytics (see Cookie Policy) — anonymous and used to improve the site.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>How we use data</h3>
+        <ul class="muted-list">
+          <li>To respond to messages and confirm appointments.</li>
+          <li>To provide and coordinate care when you visit the clinic.</li>
+          <li>To improve our website and services using anonymous analytics (only with consent).</li>
+          <li>To comply with legal obligations and to respond to safety or public health concerns.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Legal basis & retention</h3>
+        <p class="muted">We process your contact and appointment data to fulfil our contract with you (care & appointment scheduling) and for our legitimate interests (clinic administration). We keep contact and appointment records for the time required by local regulations and for safe clinical practice. Analytics data is kept in aggregated/anonymous form and retained for limited periods.</p>
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section class="card" data-animate>
+      <h2>Security</h2>
+      <p class="muted">We restrict access to clinical and contact data to trained staff only. Our site uses secure connections (HTTPS). Where third-party services (e.g. Formspree, email providers) are used, we choose reputable providers and limit the data we share. No sensitive clinical history or test results should be sent through the public contact form — call the clinic instead.</p>
+    </section>
+
+    <!-- Third parties + transfers -->
+    <section class="card" data-animate>
+      <h2>Third parties</h2>
+      <p class="muted">We may share data with trusted service providers who support clinic operations (email, appointment systems, labs) under contract. We do not sell personal data. If we must transfer data outside Kenya, we require appropriate legal protections or safeguards from the provider.</p>
+    </section>
+
+    <!-- Your rights -->
+    <section class="card" data-animate>
+      <h2>Your rights</h2>
+      <p class="muted">Depending on local laws, you may have the right to:</p>
+      <ul class="muted-list">
+        <li>Access the personal data we hold about you.</li>
+        <li>Request correction of incorrect information.</li>
+        <li>Request deletion or restriction of processing (with exceptions for clinical care or legal obligations).</li>
+        <li>Object to processing for direct marketing.</li>
+        <li>Withdraw consent for optional cookies (analytics/marketing) at any time.</li>
+      </ul>
+      <p class="muted"><strong>How to exercise these rights:</strong> Email <a class="link" href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a> or visit reception. Please provide a clear request and proof of identity where needed.</p>
+    </section>
+
+    <!-- Children -->
+    <section class="card" data-animate>
+      <h2>Children</h2>
+      <p class="muted">Our services are for adults. If you are a parent or guardian booking for a child, please let us know so we can take appropriate consent. We do not knowingly collect data from children on the website without parental consent.</p>
+    </section>
+
+    <!-- FAQ accordion -->
+    <section class="card" data-animate>
+      <h2>Privacy FAQ</h2>
+
+      <div class="faq-item">
+        <button class="faq-toggle" aria-expanded="false" aria-controls="faq1">Can I have my data deleted?</button>
+        <div id="faq1" class="faq-panel" hidden>
+          <p class="muted">You can request deletion of personal data held by the clinic, subject to legal or clinical record-keeping obligations. Contact us via email or visit reception to start the request.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" aria-expanded="false" aria-controls="faq2">Is the contact form secure?</button>
+        <div id="faq2" class="faq-panel" hidden>
+          <p class="muted">Contact forms are sent over secure HTTPS. Messages are forwarded to our clinic inbox or the configured backend (Formspree). Avoid sending detailed medical or sensitive personal information via the contact form.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" aria-expanded="false" aria-controls="faq3">Who do I contact about privacy concerns?</button>
+        <div id="faq3" class="faq-panel" hidden>
+          <p class="muted">Email <a class="link" href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a> or ask reception to escalate your query. We will respond to privacy requests within a reasonable period.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="cta-card card" data-animate>
+      <div>
+        <h3>Need help with privacy?</h3>
+        <p class="muted">If you wish to exercise a right, ask a question, or make a complaint about how we handle data, contact our team.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn small" href="mailto:kimsuspecialisthosp@gmail.com">Email privacy team</a>
+        <a class="btn outline small" href="contact.html">Contact reception</a>
+      </div>
+    </section>
+
+    <section class="card" data-animate>
+      <h3>Changes to this policy</h3>
+      <p class="muted">We may update this page from time to time. The effective date is shown at the top of the page. If we make material changes, we will highlight them on the site.</p>
+      <p class="muted">Effective date: <strong><span id="privacy-effective-date"></span></strong></p>
+    </section>
+
+  </main>
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+      </div>
+    </div>
+  </footer>
+
+  <!-- small scripts for accordion + effective date + cookie loader -->
+  <script>
+    // Set effective date
+    document.getElementById('privacy-effective-date').textContent = new Date().toLocaleDateString();
+
+    // Simple FAQ accordion (accessible)
+    (function(){
+      const toggles = Array.from(document.querySelectorAll('.faq-toggle'));
+      toggles.forEach(btn => {
+        const id = btn.getAttribute('aria-controls');
+        const panel = document.getElementById(id);
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          // close others (optional)
+          toggles.forEach(b => { b.setAttribute('aria-expanded','false'); const p = document.getElementById(b.getAttribute('aria-controls')); if(p) p.hidden = true; });
+          // toggle this
+          btn.setAttribute('aria-expanded', String(!expanded));
+          if(panel) panel.hidden = expanded;
+        });
+        btn.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+        });
+      });
+      // hide panels initially
+      document.querySelectorAll('.faq-panel').forEach(p => p.hidden = true);
+    })();
+  </script>
+
+  <!-- cookies.js will create the cookie banner if not present and apply preferences -->
+  <script src="js/cookies.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

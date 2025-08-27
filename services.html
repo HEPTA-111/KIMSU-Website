@@ -6,8 +6,10 @@
   <title>Services — KIMSU Specialist Centre</title>
   <meta name="description" content="Services at KIMSU Specialist Centre — urology and patient care services." />
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
 </head>
-<body class="theme-light">
+<body class="theme-light" itemscope itemtype="https://schema.org/MedicalBusiness">
 
   <header class="header">
     <div class="wrap header-inner">
@@ -22,44 +24,266 @@
         </ul>
       </nav>
       <div class="header-controls">
-        <button id="btn-theme-3" class="btn-icon" aria-label="Toggle theme"><i class="fa fa-moon"></i></button>
-        <button id="btn-nav-3" class="btn-icon mobile-only" aria-label="Open menu"><i class="fa fa-bars"></i></button>
+        <button id="btn-theme-2" class="btn-icon" aria-label="Toggle theme"><i class="fa fa-moon"></i></button>
+        <button id="btn-nav-2" class="btn-icon mobile-only" aria-label="Open menu"><i class="fa fa-bars"></i></button>
       </div>
+    </div>
     </div>
   </header>
 
   <main class="wrap" role="main">
+
+    <!-- Page header -->
     <section class="page-header" data-animate>
       <h1>Our Services</h1>
-      <p>Focused, evidence-based services to support patient health and recovery.</p>
+      <p>We focus on urology today and are expanding into more specialties soon. Below you will find short, clear descriptions of the services we offer and what you can expect at your visit.</p>
     </section>
 
-    <section class="services-grid grid-3" data-animate>
-      <article id="urology" class="service-card">
+    <!-- Featured service -->
+    <section class="wrap" data-animate>
+      <div class="card featured-service" role="region" aria-label="Featured service: Urology">
+        <div class="featured-left">
+          <h2>Featured: Urology</h2>
+          <p>Our main specialty — we treat urinary tract infections, kidney stones, prostate problems, and other urinary concerns. We use gentle, evidence-based tests and procedures to find the cause and help you recover quickly.</p>
+
+          <h4>Typical care steps</h4>
+          <ol>
+            <li><strong>Consult:</strong> Speak with a urology clinician about symptoms and history.</li>
+            <li><strong>Tests:</strong> On-site ultrasound, urine tests, or blood tests as needed.</li>
+            <li><strong>Treatment:</strong> Medication, simple procedures, or referral for surgery if required.</li>
+            <li><strong>Follow-up:</strong> A nurse or doctor checks progress and advice for home care.</li>
+          </ol>
+
+          <div style="margin-top:0.8rem;">
+            <a class="btn small" href="appointments.html">Book Urology Visit</a>
+            <a class="btn outline small" href="doctors.html">Meet our team</a>
+          </div>
+        </div>
+
+        <div class="featured-right">
+          <div class="feature-stats">
+            <div><strong>4</strong><span>Specialist clinicians</span></div>
+            <div><strong>On-site</strong><span>Ultrasound & Lab</span></div>
+            <div><strong>95%</strong><span>Patient satisfaction</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services grid with accordion -->
+    <section class="services-grid grid-3" data-animate aria-label="Services list">
+
+      <!-- Service card: Urology -->
+      <article id="urology" class="service-card" data-animate>
         <h3>Urology</h3>
-        <p>Consultation, diagnostics (ultrasound, lab tests), and minimally invasive procedures including endoscopy.</p>
+        <p class="muted">Consultation, diagnostics and minimally invasive procedures.</p>
+
+        <div class="service-accordion">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="urology-details">More details</button>
+          <div id="urology-details" class="acc-panel" hidden>
+            <p>We diagnose and treat problems like kidney stones, urinary infections, blood in urine, and prostate symptoms. Tests include urine tests, blood tests and ultrasound. Minor procedures (like rigid or flexible endoscopy) are done by specialists.</p>
+            <p><strong>Real-life example:</strong> If you have sudden severe back pain and blood in urine, we may do an ultrasound and urine tests the same day, then plan treatment (medicine or stone removal).</p>
+          </div>
+        </div>
       </article>
 
-      <article class="service-card">
+      <!-- Service card: Endoscopy -->
+      <article class="service-card" data-animate>
         <h3>Endoscopy & Diagnostics</h3>
-        <p>Safe endoscopic evaluations and outpatient diagnostics with fast turnaround.</p>
+        <p class="muted">Safe outpatient endoscopy and quick diagnostic reports.</p>
+
+        <div class="service-accordion">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="endo-details">More details</button>
+          <div id="endo-details" class="acc-panel" hidden>
+            <p>Endoscopy lets us look inside the urinary tract using a thin camera. Most procedures are same-day and done under local or light sedation. We follow strict cleaning and safety steps.</p>
+            <p><strong>Real-life example:</strong> A patient with recurring infections might have an endoscopy to check the bladder and urethra for a cause.</p>
+          </div>
+        </div>
       </article>
 
-      <article class="service-card">
+      <!-- Service card: Outpatient -->
+      <article class="service-card" data-animate>
         <h3>Outpatient Care</h3>
-        <p>Follow-up clinics, medication management and referrals to specialists.</p>
+        <p class="muted">Follow-up visits, medication checks and referral coordination.</p>
+
+        <div class="service-accordion">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="out-details">More details</button>
+          <div id="out-details" class="acc-panel" hidden>
+            <p>We run follow-up clinics to check recovery and adjust medication. If a patient needs surgery or specialist care elsewhere we help with coordinated referrals and notes.</p>
+            <p><strong>Real-life example:</strong> After stone removal, patients return for a follow-up visit to check wounds and give advice for preventing future stones.</p>
+          </div>
+        </div>
       </article>
+
+      <!-- Service card: Planned specialties placeholder -->
+      <article class="service-card" data-animate>
+        <h3>New specialties (coming soon)</h3>
+        <p class="muted">Nephrology, general surgery and more — watch for announcements.</p>
+
+        <div class="service-accordion">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="coming-details">More details</button>
+          <div id="coming-details" class="acc-panel" hidden>
+            <p>We plan to add kidney specialists and general surgical services. These will be added when we have trained staff and necessary equipment in place.</p>
+          </div>
+        </div>
+      </article>
+
     </section>
 
-    <div class="center" data-animate>
-      <a class="btn" href="appointments.html">Book Appointment</a>
-    </div>
+    <!-- What to expect (simple steps) -->
+    <section class="wrap" data-animate>
+      <h2>What to expect at your visit</h2>
+      <div class="card">
+        <ol>
+          <li><strong>Check-in:</strong> Front desk confirms your details and insurance (if any).</li>
+          <li><strong>Consultation:</strong> The clinician asks about symptoms and medical history.</li>
+          <li><strong>Tests:</strong> On-site urine or blood tests and ultrasound if needed.</li>
+          <li><strong>Plan:</strong> We explain treatment options and next steps in plain language.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Preparing for your visit -->
+    <section class="wrap" data-animate>
+      <h2>How to prepare</h2>
+      <div class="card">
+        <ul>
+          <li>Bring your ID and any medicine list.</li>
+          <li>If you have test results from other clinics bring copies or photos.</li>
+          <li>For some procedures you may need to fast — our staff will tell you beforehand.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Testimonial + FAQ -->
+    <section class="grid-2" data-animate>
+      <div class="card testimonial">
+        <h3>Patient story</h3>
+        <p>"The staff explained everything and helped me choose a simple treatment. I felt safe and cared for." — <strong>Amina</strong></p>
+      </div>
+
+      <aside class="card" aria-label="Service FAQ">
+        <h3>Quick FAQ</h3>
+        <p><strong>Do you accept insurance?</strong> Yes — please call reception to confirm your plan.</p>
+        <p><strong>How long is a typical visit?</strong> A follow-up visit is often 15–30 minutes; initial consultations may take up to an hour if tests are needed.</p>
+        <p><strong>Do you offer emergency care?</strong> For severe or life-threatening emergencies, call the ambulance or go to the nearest full hospital. We offer urgent outpatient consults where possible.</p>
+      </aside>
+    </section>
+
+    <!-- Booking CTA -->
+    <section class="wrap" data-animate>
+      <div class="center" style="margin:1rem 0;">
+        <a class="btn" href="appointments.html">Book Appointment</a>
+        <a class="btn outline" href="contact.html" style="margin-left:0.6rem;">Contact us</a>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="footer">
-    <div class="wrap foot-bottom">&copy; <span id="year3"></span> KIMSU Specialist Centre</div>
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Inline script for accordion behavior (keeps this page dynamic without editing main.js) -->
+  <script>
+    (function(){
+      const toggles = Array.from(document.querySelectorAll('.acc-toggle'));
+      toggles.forEach(btn => {
+        const panelId = btn.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          // collapse all panels in same container (optional)
+          const container = btn.closest('.services-grid') || document;
+          container.querySelectorAll('.acc-toggle').forEach(b => {
+            if (b !== btn) { b.setAttribute('aria-expanded','false'); const p = document.getElementById(b.getAttribute('aria-controls')); if(p) p.hidden = true; }
+          });
+          // toggle this panel
+          btn.setAttribute('aria-expanded', String(!expanded));
+          if(panel) panel.hidden = expanded;
+        });
+
+        // keyboard support
+        btn.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      });
+
+      // make sure panels are hidden on load
+      document.querySelectorAll('.acc-panel').forEach(p => p.hidden = true);
+    })();
+  </script>
+
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

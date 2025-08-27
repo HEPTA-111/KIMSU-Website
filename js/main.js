@@ -110,3 +110,51 @@
     if(el) el.textContent = years;
   });
 })();
+/* ---- Ensure back-to-top exists and wire behavior (add to js/main.js) ---- */
+(function ensureBackToTop(){
+  // if button already exists, we don't duplicate
+  if (document.querySelector('.back-to-top')) return;
+
+  // create button
+  const btn = document.createElement('button');
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label','Back to top');
+  btn.type = 'button';
+  btn.innerText = '↑';
+  // small initial hidden style for non-FOUC
+  btn.style.display = 'none';
+  btn.style.opacity = '0';
+  btn.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+
+  // append to body
+  document.body.appendChild(btn);
+
+  // show/hide on scroll
+  const showAt = 320;
+  function update() {
+    if (window.scrollY > showAt) {
+      btn.style.display = 'block';
+      // small delay to allow display change
+      requestAnimationFrame(() => { btn.style.opacity = '1'; btn.style.transform = 'translateY(0)'; });
+    } else {
+      btn.style.opacity = '0';
+      btn.style.transform = 'translateY(6px)';
+      // hide after transition
+      setTimeout(()=> { if (btn.style.opacity === '0') btn.style.display = 'none'; }, 220);
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  // initial state
+  update();
+
+  // click -> smooth scroll to top
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // keyboard accessibility: show on focus within page via tabbing (optional)
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'Home') window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // expose for debugging
+  window.__kimsu_backToTop = btn;
+})();

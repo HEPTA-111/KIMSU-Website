@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Appointments — KIMSU</title>
+  <title>Appointments — KIMSU Specialist Centre</title>
   <meta name="description" content="Book an appointment at KIMSU Specialist Centre" />
   <link rel="stylesheet" href="css/main.css">
+  <!-- Font Awesome for the theme icon and small icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body class="theme-light">
   <header class="header">
@@ -30,37 +32,307 @@
   <main class="wrap">
     <section class="page-header" data-animate>
       <h1>Book an appointment</h1>
-      <p>Fill the form and our team will contact you to confirm the slot.</p>
+      <p>Complete the simple form below. Our team will contact you to confirm the time and any tests needed. For urgent problems call <a class="link" href="tel:+254724283953">+254 724 283 953</a>.</p>
     </section>
 
     <section class="appointment-form" data-animate>
-      <form id="appointmentPageForm" action="https://formspree.io/f/your-id" method="POST" novalidate>
-        <div class="form-grid">
-          <label><span>Name</span><input type="text" name="name" required></label>
-          <label><span>Phone</span><input type="tel" name="phone" required></label>
-          <label><span>Email</span><input type="email" name="email" ></label>
-          <label><span>Preferred date</span><input type="date" name="date"></label>
-          <label><span>Service</span>
-            <select name="service">
-              <option>Urology Consultation</option>
-              <option>Endoscopy</option>
-              <option>Follow-up</option>
-            </select>
-          </label>
-          <label class="full"><span>Notes</span><textarea name="notes" rows="4"></textarea></label>
+      <div class="grid-2" style="gap:1rem; align-items:start;">
+        <!-- Form column -->
+        <div class="card">
+          <h2 style="margin-top:0">Appointment request</h2>
+          <p class="muted" style="margin-top:0">Tell us a little about yourself and the reason for your visit. We aim to confirm requests within working hours.</p>
+
+          <form id="appointmentPageForm" action="https://formspree.io/f/your-id" method="POST" novalidate>
+            <!-- Hidden field to store prefilled doctor name -->
+            <input type="hidden" name="doctor" id="doctorField" value="">
+
+            <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+              <label>
+                <span class="visually-hidden">Full name</span>
+                <input type="text" name="name" placeholder="Full name" required>
+              </label>
+
+              <label>
+                <span class="visually-hidden">Phone</span>
+                <input type="tel" name="phone" placeholder="Phone (e.g. +2547...)" required>
+              </label>
+
+              <label>
+                <span class="visually-hidden">Email</span>
+                <input type="email" name="email" placeholder="Email (optional)">
+              </label>
+
+              <label>
+                <span class="visually-hidden">Preferred time of day</span>
+                <select name="time_of_day" aria-label="Preferred time of day">
+                  <option value="">Any time</option>
+                  <option>Morning (8:00–11:00)</option>
+                  <option>Midday (11:00–14:00)</option>
+                  <option>Afternoon (14:00–17:00)</option>
+                </select>
+              </label>
+
+              <label>
+                <span class="visually-hidden">Preferred date</span>
+                <input id="apt-date" type="date" name="date" placeholder="Preferred date">
+              </label>
+
+              <label>
+                <span class="visually-hidden">Service</span>
+                <select name="service" id="serviceSelect">
+                  <option>Urology Consultation</option>
+                  <option>Endoscopy</option>
+                  <option>Follow-up</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Insurance / Payment</span>
+                <select name="payment">
+                  <option>Cash</option>
+                  <option>Insurance (please call to confirm)</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label style="grid-column:1 / -1;" class="full">
+                <span>Notes (brief)</span>
+                <textarea name="notes" rows="4" placeholder="Briefly describe your reason for visit (avoid sensitive details)"></textarea>
+              </label>
+
+            </div>
+
+            <div style="display:flex; gap:0.6rem; align-items:center; margin-top:0.8rem; flex-wrap:wrap;">
+              <label style="display:inline-flex; align-items:center; gap:0.4rem; font-weight:700;">
+                <input id="asapToggle" type="checkbox" name="asap" value="yes"> <span style="font-weight:600">ASAP (urgent)</span>
+              </label>
+
+              <button id="submitBtn" type="submit" class="btn">Send request</button>
+              <a class="btn outline small" href="contact.html">Call reception</a>
+            </div>
+          </form>
         </div>
 
-        <div class="center">
-          <button type="submit" class="btn">Send</button>
-        </div>
-      </form>
+        <!-- Right column: tips, doctors, policies -->
+        <aside class="card" aria-label="Booking help">
+          <h3>Quick tips</h3>
+          <ul class="muted-list">
+            <li>We will call or SMS to confirm the appointment time.</li>
+            <li>Bring your ID and a list of current medicines.</li>
+            <li>If you are referred, bring the referral letter or email it to <a class="link" href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a>.</li>
+          </ul>
+
+          <h3 style="margin-top:0.8rem">Choose a doctor</h3>
+          <p class="muted">If you prefer a clinician, click a name on our <a class="link" href="doctors.html">Doctors</a> page. The booking link will prefill the doctor for you.</p>
+
+          <h3 style="margin-top:0.8rem">Cancellation & fees</h3>
+          <p class="muted">If you cancel less than 24 hours before your appointment we may charge a small fee. For surgery or procedures a deposit may be required — our staff will explain at booking.</p>
+
+          <div style="margin-top:0.9rem;">
+            <a class="btn outline small" href="services.html">View services</a>
+            <a class="btn small" href="doctors.html" style="margin-left:0.5rem;">Meet our team</a>
+          </div>
+        </aside>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap foot-bottom">&copy; <span id="year5"></span> KIMSU Specialist Centre</div>
+  <!-- Confirmation modal shown before final submit -->
+  <div id="confirm-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <h3 id="confirm-title">Confirm appointment request</h3>
+      <p id="confirm-summary" class="muted"></p>
+      <div style="display:flex; gap:0.6rem; margin-top:0.8rem;">
+        <button id="confirm-send" class="btn">Yes — send</button>
+        <button class="btn outline modal-close">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="foot-links">
+        <a href="contact.html">Contact</a> · <a href="about.html">About</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Page-specific script: prefill, date min, confirm modal, validation -->
+  <script>
+  (function(){
+    const form = document.getElementById('appointmentPageForm');
+    const dateInput = document.getElementById('apt-date');
+    const doctorField = document.getElementById('doctorField');
+    const confirmModal = document.getElementById('confirm-modal');
+    const confirmSummary = document.getElementById('confirm-summary');
+    const confirmSend = document.getElementById('confirm-send');
+    const submitBtn = document.getElementById('submitBtn');
+    const asapToggle = document.getElementById('asapToggle');
+
+    // Set date min to today
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth()+1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    if(dateInput) dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+    // Prefill doctor from URL param ?doctor=Dr.%20Jane%20Mwangi
+    function getParam(name){
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+    const docParam = getParam('doctor');
+    if(docParam && doctorField) {
+      doctorField.value = decodeURIComponent(docParam);
+      // optionally set the service text to include doctor
+      const sel = document.getElementById('serviceSelect');
+      if(sel && sel.options.length){
+        // add pre-selected option for chosen doctor
+        const opt = document.createElement('option');
+        opt.text = `Consult with ${decodeURIComponent(docParam)}`;
+        opt.selected = true;
+        sel.insertBefore(opt, sel.firstChild);
+      }
+    }
+
+    // Show confirm modal with a short summary before final submit
+    function openConfirm(summaryText){
+      confirmSummary.textContent = summaryText;
+      confirmModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeConfirm(){
+      confirmModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    // Validate minimal fields
+    function validate(){
+      const name = form.querySelector('[name="name"]');
+      const phone = form.querySelector('[name="phone"]');
+      const subject = form.querySelector('[name="service"]');
+      if(!name.value.trim()){
+        alert('Please enter your full name.');
+        name.focus();
+        return false;
+      }
+      if(!phone.value.trim()){
+        alert('Please enter your phone number.');
+        phone.focus();
+        return false;
+      }
+      return true;
+    }
+
+    // Intercept submit, show confirm
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!validate()) return;
+      // build small summary
+      const name = form.querySelector('[name="name"]').value.trim();
+      const phone = form.querySelector('[name="phone"]').value.trim();
+      const service = form.querySelector('[name="service"]').value || '';
+      const date = form.querySelector('[name="date"]').value || 'Any';
+      const asap = asapToggle.checked ? ' (ASAP requested)' : '';
+      const doctor = document.getElementById('doctorField').value || '';
+      const doctorText = doctor ? ` for ${doctor}` : '';
+      const summary = `${name} — ${phone}\nService: ${service}${doctorText}\nPreferred date: ${date}${asap}`;
+      openConfirm(summary);
+    });
+
+    // Send after confirm
+    confirmSend.addEventListener('click', function(){
+      // close modal and submit form (bypass intercept)
+      closeConfirm();
+      // show a small visual feedback
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      // submit the form normally to the configured action (Formspree or backend)
+      form.submit();
+    });
+
+    // Modal close handlers
+    document.querySelectorAll('.modal-close').forEach(b => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeConfirm();
+    }));
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeConfirm(); });
+
+    // Accessibility: focus management
+    confirmModal.addEventListener('transitionend', () => {
+      // no-op for now
+    });
+
+  })();
+  </script>
+
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

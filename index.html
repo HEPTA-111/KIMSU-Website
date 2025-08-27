@@ -110,17 +110,17 @@
       <h2 id="team-heading">Meet a few of our specialists</h2>
       <div class="grid-3">
         <div class="team-card" data-animate>
-          <img src="assets/images/doctor-1.jpg" alt="Dr. Jane Mwangi">
+          <img src="assets/images/doctor-1.png" alt="Dr. Dancun Waweru">
+          <h4>Dr. Dancun Waweru</h4>
+          <p>Urology Surgeon — Special interest in endoscopic procedures and stone removal.</p>
+        </div>
+        <div class="team-card" data-animate>
+          <img src="assets/images/doctor-2.jpeg" alt="Dr. Jane Mwangi">
           <h4>Dr. Jane Mwangi</h4>
           <p>Consultant Urologist — MBChB, MMed (Urology). Dr Jane has 12 years of experience treating kidney and urinary conditions.</p>
         </div>
         <div class="team-card" data-animate>
-          <img src="assets/images/doctor-2.jpg" alt="Dr. Paul Kimani">
-          <h4>Dr. Paul Kimani</h4>
-          <p>Urology Surgeon — Special interest in endoscopic procedures and stone removal.</p>
-        </div>
-        <div class="team-card" data-animate>
-          <img src="assets/images/doctor-3.jpg" alt="Ms. Grace Njeri">
+          <img src="assets/images/doctor-3.jpeg" alt="Ms. Grace Njeri">
           <h4>Ms. Grace Njeri</h4>
           <p>Senior Nurse — Endoscopy & patient education. Grace helps patients prepare for procedures and care at home.</p>
         </div>
@@ -147,7 +147,7 @@
         </div>
       </div>
     </section>
-  </main>
+  </main><br>
 
   <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
@@ -155,9 +155,6 @@
       <div>
         &copy; <span id="year"></span> KIMSU Specialist Centre ·
         <a href="privacy.html">Privacy Policy</a>
-      </div>
-      <div class="foot-links">
-        <a href="contact.html">Contact</a> · <a href="about.html">About</a>
       </div>
     </div>
   </footer>
@@ -189,6 +186,67 @@
 
   <button class="back-to-top" aria-label="Back to top">↑</button>
 
-  <script src="js/main.js"></script>
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

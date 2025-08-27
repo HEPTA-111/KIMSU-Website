@@ -6,6 +6,7 @@
   <title>Doctors — KIMSU Specialist Centre</title>
   <meta name="description" content="Our medical team at KIMSU Specialist Centre." />
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body class="theme-light">
 
@@ -31,44 +32,298 @@
   <main class="wrap">
     <section class="page-header" data-animate>
       <h1>Our Medical Team</h1>
-      <p>Experienced clinicians dedicated to specialist care.</p>
+      <p>Experienced clinicians dedicated to compassionate, modern care. Most of our team are urology specialists today — more specialties are joining soon.</p>
     </section>
 
-    <section class="grid-3 doctors-grid" data-animate>
-      <!-- Each doctor card can be expanded to their own profile page later -->
-      <article class="doctor-card">
-        <img src="assets/images/doctor-1.jpg" alt="Dr. Jane Mwangi">
+    <!-- Short intro with CTA -->
+    <section class="card" data-animate style="margin-bottom:1rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div style="flex:1; min-width:240px;">
+        <strong>Book a consultation</strong>
+        <p class="muted" style="margin:0">Call us or use the booking form to request a suitable time. We will confirm your appointment within business hours.</p>
+      </div>
+      <div style="display:flex; gap:0.6rem;">
+        <a class="btn small" href="appointments.html">Book appointment</a>
+        <a class="btn outline small" href="contact.html">Contact reception</a>
+      </div>
+    </section>
+
+    <!-- Doctors grid -->
+    <section class="grid-3 doctors-grid" data-animate aria-label="Doctors list">
+      <!-- Dr 1 -->
+      <article class="doctor-card" tabindex="0"
+               data-name="Dr. Paul Kimani"
+               data-title="Urology Surgeon"
+               data-qual="MBChB, Fellowship Endourology"
+               data-exp="9 years"
+               data-languages="English, Kiswahili"
+               data-bio="Dr Paul Kimani specialises in endoscopic procedures and stone removal. He is skilled in minimally invasive techniques and patient education on prevention of future stones.">
+        <img src="assets/images/doctor-1.png" alt="Dr. Dancun Waweru">
+        <div>
+          <h3>Dr. Dancun Waweru</h3>
+          <p class="muted">Urology Surgeon — Endoscopic specialist</p>
+          <p style="margin:0.45rem 0; color:var(--c-text-muted)">Availability: Tue & Thu · 10:00–14:00</p>
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem;">
+            <a class="link" href="#" data-action="view-profile">View profile</a>
+            <a class="link" href="appointments.html">Book consultation →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Dr 2 -->
+      <article class="doctor-card" tabindex="0"
+               data-name="Dr. Jane Mwangi"
+               data-title="Consultant Urologist"
+               data-qual="MBChB, MMed (Urology)"
+               data-exp="12 years"
+               data-languages="English, Kiswahili"
+               data-bio="Dr Jane Mwangi is a consultant urologist with extensive experience in treating kidney stones, urinary tract infections and prostate conditions. She focuses on clear communication and minimally invasive treatment when appropriate.">
+        <img src="assets/images/doctor-2.jpeg" alt="Dr. Jane Mwangi">
         <div>
           <h3>Dr. Jane Mwangi</h3>
-          <p>Consultant Urologist — MBChB, MMed (Urology)</p>
-          <a class="link" href="appointments.html">Book consultation →</a>
+          <p class="muted">Consultant Urologist — MBChB, MMed (Urology)</p>
+          <p style="margin:0.45rem 0; color:var(--c-text-muted)">Availability: Mon, Wed & Fri · 9:00–13:00</p>
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem;">
+            <a class="link" href="#" data-action="view-profile">View profile</a>
+            <a class="link" href="appointments.html">Book consultation →</a>
+          </div>
         </div>
       </article>
-
-      <article class="doctor-card">
-        <img src="assets/images/doctor-2.jpg" alt="Dr. Paul Kimani">
-        <div>
-          <h3>Dr. Paul Kimani</h3>
-          <p>Urology Surgeon — Endoscopic specialist</p>
-          <a class="link" href="appointments.html">Book consultation →</a>
-        </div>
-      </article>
-
-      <article class="doctor-card">
-        <img src="assets/images/doctor-3.jpg" alt="Ms. Grace Njeri">
+      <!-- Nurse -->
+      <article class="doctor-card" tabindex="0"
+               data-name="Ms. Grace Njeri"
+               data-title="Senior Nurse — Endoscopy"
+               data-qual="BSc Nursing, Endoscopy Cert."
+               data-exp="8 years"
+               data-languages="English, Kiswahili"
+               data-bio="Grace supports patients through procedures and explains how to prepare and recover at home. She leads patient education and pre-procedure checks.">
+        <img src="assets/images/doctor-3.jpeg" alt="Ms. Grace Njeri">
         <div>
           <h3>Ms. Grace Njeri</h3>
-          <p>Senior Nurse — Endoscopy & patient education</p>
-          <a class="link" href="contact.html">Contact →</a>
+          <p class="muted">Senior Nurse — Endoscopy & patient education</p>
+          <p style="margin:0.45rem 0; color:var(--c-text-muted)">Availability: Mon–Sat · 8:00–12:00 (clinic support)</p>
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem;">
+            <a class="link" href="#" data-action="view-profile">View profile</a>
+            <a class="link" href="contact.html">Contact →</a>
+          </div>
         </div>
       </article>
+
+      <!-- Additional placeholder doctors to show future expansion -->
+      <article class="doctor-card" tabindex="0"
+               data-name="Dr. Mary Otieno"
+               data-title="Visiting Nephrologist (coming soon)"
+               data-qual="MBChB, MMed (Nephrology)"
+               data-exp="10 years"
+               data-languages="English, Kiswahili"
+               data-bio="Dr Mary will join KIMSU for monthly clinics to help patients with kidney conditions. Watch this space for clinic dates.">
+        <img src="assets/images/placeholder.png" alt="Dr. Mary Otieno">
+        <div>
+          <h3>Dr. Mary Otieno</h3>
+          <p class="muted">Visiting Nephrologist — coming soon</p>
+          <p style="margin:0.45rem 0; color:var(--c-text-muted)">Availability: Monthly clinics (dates updated on our website)</p>
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem;">
+            <a class="link" href="#" data-action="view-profile">View profile</a>
+            <a class="link" href="appointments.html">Book consultation →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- One more placeholder -->
+      <article class="doctor-card" tabindex="0"
+               data-name="Dr. Michael Ouma"
+               data-title="General Surgeon (coming soon)"
+               data-qual="MBChB, MMed (Surgery)"
+               data-exp="11 years"
+               data-languages="English, Kiswahili"
+               data-bio="Dr Michael will provide general surgical care and minor procedures when our surgical suite expands.">
+        <img src="assets/images/placeholder.png" alt="Dr. Michael Ouma">
+        <div>
+          <h3>Dr. Michael Ouma</h3>
+          <p class="muted">General Surgeon — coming soon</p>
+          <p style="margin:0.45rem 0; color:var(--c-text-muted)">Availability: To be announced</p>
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-top:0.5rem;">
+            <a class="link" href="#" data-action="view-profile">View profile</a>
+            <a class="link" href="contact.html">Contact →</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Small FAQ / notes about booking -->
+    <section class="wrap" data-animate style="margin-top:1rem;">
+      <div class="card">
+        <h3>Booking & appointments</h3>
+        <p class="muted">We accept walk-ins for simple check-ups but recommend booking in advance to avoid waits. For surgical procedures we will schedule a detailed consultation and pre-op checks.</p>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap foot-bottom">&copy; <span id="year4"></span> KIMSU Specialist Centre</div>
+  <!-- Doctor profile modal (single, populated dynamically) -->
+  <div id="doctor-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="doctor-name">
+    <div class="modal-panel" role="document">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:0 0 110px;">
+          <img id="doctor-image" src="assets/images/placeholder.png" alt="" style="width:110px; height:110px; object-fit:cover; border-radius:8px;"/>
+        </div>
+        <div style="flex:1 1 240px;">
+          <h3 id="doctor-name">Doctor Name</h3>
+          <p id="doctor-title" class="muted">Title & qualifications</p>
+          <p id="doctor-experience" class="muted" style="margin-top:0.2rem;"></p>
+          <p id="doctor-languages" class="muted"></p>
+          <div id="doctor-bio" style="margin-top:0.6rem; color:var(--c-text)"></div>
+          <div style="margin-top:0.7rem; display:flex; gap:0.6rem;">
+            <a id="modal-book" class="btn small" href="appointments.html">Book consultation</a>
+            <a id="modal-contact" class="btn outline small" href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Doctor modal script (small, accessible) -->
+  <script>
+    (function(){
+      const modal = document.getElementById('doctor-modal');
+      const closeBtns = modal ? modal.querySelectorAll('.modal-close') : [];
+      const viewLinks = Array.from(document.querySelectorAll('[data-action="view-profile"]'));
+      const modalImage = document.getElementById('doctor-image');
+      const modalName = document.getElementById('doctor-name');
+      const modalTitle = document.getElementById('doctor-title');
+      const modalExp = document.getElementById('doctor-experience');
+      const modalLang = document.getElementById('doctor-languages');
+      const modalBio = document.getElementById('doctor-bio');
+      const modalBook = document.getElementById('modal-book');
+
+      function openModalFromCard(card){
+        if(!modal) return;
+        const img = card.querySelector('img');
+        const name = card.dataset.name || '';
+        const title = card.dataset.title || '';
+        const qual = card.dataset.qual || '';
+        const exp = card.dataset.exp || '';
+        const langs = card.dataset.languages || '';
+        const bio = card.dataset.bio || '';
+
+        modalImage.src = img ? img.src : 'assets/images/placeholder.png';
+        modalImage.alt = name;
+        modalName.textContent = name;
+        modalTitle.textContent = title + (qual ? ' · ' + qual : '');
+        modalExp.textContent = exp ? ('Experience: ' + exp) : '';
+        modalLang.textContent = langs ? ('Languages: ' + langs) : '';
+        modalBio.textContent = bio;
+
+        // book link anchors to appointments; you can change to anchor with prefilled doctor name
+        modalBook.href = 'appointments.html';
+
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        // focus modal for screen readers
+        modal.querySelector('.modal-panel').focus();
+      }
+
+      function closeModal(){
+        if(!modal) return;
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+
+      viewLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const card = link.closest('.doctor-card');
+          if(card) openModalFromCard(card);
+        });
+      });
+
+      closeBtns.forEach(b => b.addEventListener('click', closeModal));
+      modal?.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+      // keyboard: allow Enter on focused card to open profile
+      document.querySelectorAll('.doctor-card').forEach(card => {
+        card.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModalFromCard(card);
+          }
+        });
+      });
+    })();
+  </script>
+
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -8,11 +8,11 @@
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
-<body class="theme-light">
+<body class="theme-light" itemscope itemtype="https://schema.org/Hospital">
 
   <header class="header">
     <div class="wrap header-inner">
-      <a class="logo" href="index.html"><img src="assets/images/logo-kimsu.svg" alt="KIMSU logo"></a>
+      <a class="logo" href="index.html" aria-label="KIMSU logo"><img src="assets/images/logo-kimsu.svg" alt="KIMSU logo"></a>
       <nav class="nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -30,36 +30,193 @@
   </header>
 
   <main class="wrap about-page" role="main">
+    <!-- Page header -->
     <section class="page-header" data-animate>
       <h1>About KIMSU Specialist Centre</h1>
-      <p>Specialist urology services in Meru — caring, precise and modern.</p>
+      <p>We are a specialist hospital in Meru offering friendly, modern urology care. Our team is small but experienced, and we work with the local community and nearby Kenya Methodist University to make healthcare simple and reliable.</p>
     </section>
 
-    <section class="grid-2" data-animate>
-      <div>
+    <!-- Intro + quick facts -->
+    <section class="intro-grid grid-2" data-animate>
+      <div class="intro-card card">
         <h2>Who we are</h2>
-        <p>KIMSU Specialist Centre is a specialist hospital in Meru focusing on urology services. We operate near Kenya Methodist University's main campus and are growing to include more specialties.</p>
+        <p>KIMSU Specialist Centre opened to serve Meru and surrounding communities with focused urology care. Our staff includes consultant doctors, trained nurses and lab technicians. We treat common and complex urinary problems with dignity and respect.</p>
+        <p>We accept cash and many local insurance plans. If you need urgent help, call our front desk and we will guide you to the right service.</p>
       </div>
-      <div>
-        <h2>Mission & Vision</h2>
-        <p><strong>Mission:</strong> Deliver safe, evidence-based specialist care with dignity and compassion.<br><strong>Vision:</strong> Be the leading specialist centre in Meru for urology and related services.</p>
+
+      <aside class="card" aria-label="Quick facts">
+        <h3>Quick facts</h3>
+        <ul class="muted-list">
+          <li><strong>Location:</strong> Along Meru–Maua Highway, near Kenya Methodist University main campus</li>
+          <li><strong>Opening hours:</strong> Mon–Fri 8:00–17:00 · Sat 8:00–12:00</li>
+          <li><strong>Phone:</strong> <a href="tel:+254724283953" class="link">+254 724 283 953</a></li>
+          <li><strong>Email:</strong> <a href="mailto:kimsuspecialisthosp@gmail.com" class="link">kimsuspecialisthosp@gmail.com</a></li>
+        </ul>
+        <div style="margin-top:0.6rem;">
+          <a class="btn small" href="contact.html">Find us</a>
+          <a class="btn outline small" href="appointments.html">Make an appointment</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Mission / vision / values -->
+    <section class="grid-3" data-animate>
+      <div class="card">
+        <h3>Our mission</h3>
+        <p>To provide safe and evidence-based specialist care with compassion and clear communication.</p>
+      </div>
+      <div class="card">
+        <h3>Our vision</h3>
+        <p>To be the trusted specialist centre in Meru for urology and related services.</p>
+      </div>
+      <div class="card">
+        <h3>Our values</h3>
+        <p>Respect • Safety • Honesty • Teamwork • Learning</p>
       </div>
     </section>
 
-    <section class="timeline" data-animate>
+    <!-- Facilities -->
+    <section class="facilities wrap" data-animate>
+      <h2>Facilities & equipment</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h4>Outpatient clinic</h4>
+          <p>Comfortable consultation rooms for fast and private visits.</p>
+        </div>
+        <div class="card">
+          <h4>Ultrasound & lab</h4>
+          <p>On-site ultrasound and basic lab tests to speed up diagnosis.</p>
+        </div>
+        <div class="card">
+          <h4>Endoscopy suite</h4>
+          <p>Safe endoscopic procedures with trained nursing support.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats + testimonial -->
+    <section class="stats-test wrap" data-animate">
+      <div class="stats-grid" data-animate>
+        <div class="stat card">
+          <h3>8,000+</h3>
+          <p class="muted">Patients seen (since opening)</p>
+        </div>
+        <div class="stat card">
+          <h3>4</h3>
+          <p class="muted">Specialist clinicians</p>
+        </div>
+        <div class="stat card">
+          <h3>95%</h3>
+          <p class="muted">Patient satisfaction (simple survey)</p>
+        </div>
+      </div>
+
+      <div class="testimonial card" data-animate>
+        <h3>Patient story</h3>
+        <p class="muted">"I was worried about my kidney stones. The team explained everything and I had a simple procedure that helped me return to normal life quickly. The nurses were kind and the doctor listened to my questions." — <strong>Sam M.</strong></p>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline wrap" data-animate>
       <h2>Our journey</h2>
-      <ul>
-        <li><strong>2024</strong> – Founded and launched specialist urology services.</li>
-        <li><strong>2025</strong> – Expanded outpatient and diagnostics services.</li>
+      <ul class="timeline-list">
+        <li><span class="tl-year">2024</span><div class="tl-body"><strong>Founded</strong> — KIMSU opened focusing on urology and outpatient care.</div></li>
+        <li><span class="tl-year">2025</span><div class="tl-body"><strong>Expanded diagnostics</strong> — On-site ultrasound and lab services started.</div></li>
+        <li><span class="tl-year">2026</span><div class="tl-body"><strong>Community outreach</strong> — Regular health talks and screenings planned.</div></li>
       </ul>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq wrap" data-animate>
+      <h2>Frequently asked questions</h2>
+      <div class="card">
+        <h4>Do you accept insurance?</h4>
+        <p class="muted">Yes — we accept several local insurance plans. Please call reception to confirm your plan.</p>
+
+        <h4>Can I get same-day appointments?</h4>
+        <p class="muted">We offer same-day urgent consultations where possible. For planned visits please book in advance.</p>
+
+        <h4>Is it safe to share health details on the contact form?</h4>
+        <p class="muted">Please avoid sending sensitive medical details in the contact form. Call us for urgent or personal health questions.</p>
+      </div>
+    </section>
+
+
+
   </main>
 
-  <footer class="footer">
-    <div class="wrap foot-bottom">&copy; <span id="year2"></span> KIMSU Specialist Centre · <a href="privacy.html">Privacy Policy</a></div>
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

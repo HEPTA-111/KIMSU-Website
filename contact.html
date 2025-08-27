@@ -6,6 +6,7 @@
   <title>Contact — KIMSU Specialist Centre</title>
   <meta name="description" content="Contact KIMSU Specialist Centre — phone, email and location." />
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body class="theme-light">
   <header class="header">
@@ -30,19 +31,57 @@
   <main class="wrap contact-page">
     <section class="page-header" data-animate>
       <h1>Get in touch</h1>
-      <p>Questions, referrals or feedback — we’re here to help.</p>
+      <p>Questions, referrals or feedback — we are here to help. Call, message, or visit us — simple and clear.</p>
     </section>
 
+    <!-- Contact grid -->
     <section class="contact-grid" data-animate>
-      <div class="contact-card">
-        <h2>Contact Info</h2>
-        <p><i class="fa fa-phone"></i> <a href="tel:+254724283953">+254 724 283 953</a></p>
-        <p><i class="fa fa-phone"></i> <a href="tel:+254755033560">+254 755 033 560</a></p>
-        <p><i class="fa fa-envelope"></i> <a href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a></p>
-        <p><i class="fa fa-map-marker-alt"></i> Along Meru–Maua Highway, just before Kenya Methodist University, Main Campus</p>
-        <p class="opening-hours"><strong>Mon–Fri:</strong> 8:00 AM – 5:00 PM · <strong>Sat:</strong> 8:00 AM – Noon</p>
+      <!-- Contact card -->
+      <div class="contact-card card" role="region" aria-labelledby="contact-info">
+        <h2 id="contact-info">Contact Info</h2>
 
-        <div class="social-links">
+        <p><i class="fa fa-phone" aria-hidden="true"></i>
+          <strong>Reception:</strong>
+          <a href="tel:+254724283953" class="link">+254 724 283 953</a>
+        </p>
+
+        <p><i class="fa fa-phone" aria-hidden="true"></i>
+          <strong>Office:</strong>
+          <a href="tel:+254755033560" class="link">+254 755 033 560</a>
+        </p>
+
+        <p><i class="fa fa-envelope" aria-hidden="true"></i>
+          <strong>Email:</strong>
+          <a href="mailto:kimsuspecialisthosp@gmail.com" class="link">kimsuspecialisthosp@gmail.com</a>
+        </p>
+
+        <p><i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+          <strong>Address:</strong>
+          Along Meru–Maua Highway, just before Kenya Methodist University, Main Campus
+        </p>
+
+        <p class="opening-hours"><strong>Opening hours:</strong><br>
+          Mon–Fri: 08:00 — 17:00<br>
+          Sat: 08:00 — 12:00<br>
+          Sun: Closed (emergencies → visit nearest full hospital)
+        </p>
+
+        <hr style="border:none; border-top:1px solid var(--c-border); margin:0.8rem 0;">
+
+        <h3>How to make an appointment</h3>
+        <ol class="muted-list">
+          <li>Call reception or use the <a class="link" href="appointments.html">online booking form</a>.</li>
+          <li>Tell us the reason for the visit so we can allocate the right time and clinician.</li>
+          <li>Bring any previous test results or medication list.</li>
+        </ol>
+
+        <h3 style="margin-top:0.8rem;">Referrals</h3>
+        <p class="muted">We accept referrals from local clinics and hospitals. Email scanned referral letters to <a class="link" href="mailto:kimsuspecialisthosp@gmail.com">kimsuspecialisthosp@gmail.com</a> and indicate urgent requests in the subject line.</p>
+
+        <h3 style="margin-top:0.8rem;">Parking & access</h3>
+        <p class="muted">Free short-term parking is available on-site. The clinic is wheelchair-accessible with ground-floor entry.</p>
+
+        <div class="social-links" style="margin-top:0.8rem;">
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
           <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -50,41 +89,179 @@
         </div>
       </div>
 
-      <div class="map-card">
-        <div class="map-container">
+      <!-- Map card -->
+      <div class="map-card card">
+        <h2>Where we are</h2>
+        <div class="map-container" id="map-container" role="region" aria-label="KIMSU location map">
           <iframe
+            id="kimsu-map"
             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.8143362651813!2d37.64790787617146!3d0.0809701643375312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDQnNTEuNSJOIDM3wrAzOScwMS43IkU!5e0!3m2!1sen!2ske!4v1754309804451!5m2!1sen!2ske"
-            loading="lazy" width="100%" height="250" aria-label="KIMSU location"></iframe>
+            loading="lazy" width="100%" height="300" style="border:0;" aria-hidden="false"></iframe>
         </div>
-        <a class="take-me-there" href="https://www.google.com/maps/dir/?api=1&destination=0.080964781158087,37.65048281201828" target="_blank">Take me there →</a>
+
+        <div style="display:flex; gap:0.6rem; margin-top:0.65rem; align-items:center; flex-wrap:wrap;">
+          <a class="take-me-there link" href="https://www.google.com/maps/dir/?api=1&destination=0.080964781158087,37.65048281201828" target="_blank" rel="noopener">Take me there →</a>
+          <button id="map-fullscreen" class="btn outline small" type="button" aria-pressed="false">Fullscreen map</button>
+        </div>
       </div>
     </section>
 
-    <section class="message-card" data-animate>
+    <!-- Message form -->
+    <section class="message-card card" data-animate>
       <h2>Send us a message</h2>
-      <form action="https://formspree.io/f/your-id" method="POST" id="contactForm">
+      <p class="muted">Use this form for general questions, referrals, or to request an appointment. For urgent medical issues call the reception number above.</p>
+
+      <form action="https://formspree.io/f/your-id" method="POST" id="contactForm" novalidate>
         <div class="form-row">
-          <input type="text" name="name" placeholder="Your name" required>
+          <input type="text" name="name" placeholder="Your full name" required>
           <input type="email" name="email" placeholder="Email address" required>
         </div>
+
         <div class="form-row">
+          <input type="tel" name="phone" placeholder="Phone (optional)">
           <input type="text" name="subject" placeholder="Subject" required>
         </div>
+
         <div class="form-row">
-          <textarea name="message" rows="5" placeholder="Your message…" required></textarea>
+          <textarea name="message" rows="5" placeholder="Your message… (please avoid sensitive clinical details)" required></textarea>
         </div>
-        <div class="center">
+
+        <div style="display:flex; gap:0.6rem; align-items:center; margin-top:0.6rem; flex-wrap:wrap;">
           <button type="submit" class="btn">Send message</button>
+          <a class="btn outline small" href="appointments.html">Book appointment</a>
         </div>
       </form>
     </section>
-
   </main>
 
-  <footer class="footer">
-    <div class="wrap foot-bottom">&copy; <span id="year6"></span> KIMSU Specialist Centre</div>
+  <!-- Fullscreen map overlay -->
+  <div id="map-overlay" class="map-overlay" aria-hidden="true">
+    <button id="close-map-overlay" class="close-fullscreen" aria-label="Close map">×</button>
+    <div class="overlay-map-panel">
+      <iframe id="overlay-iframe" src="" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap foot-bottom">
+      <div>
+        &copy; <span id="year"></span> KIMSU Specialist Centre ·
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Page-specific scripts: map fullscreen + light form validation -->
+  <script>
+    (function(){
+      // Map fullscreen overlay logic
+      const mapBtn = document.getElementById('map-fullscreen');
+      const overlay = document.getElementById('map-overlay');
+      const overlayIframe = document.getElementById('overlay-iframe');
+      const closeOverlay = document.getElementById('close-map-overlay');
+      const originalMap = document.getElementById('kimsu-map');
+
+      function openMapOverlay(){
+        if(!overlay || !originalMap) return;
+        overlayIframe.src = originalMap.src;
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('map-fullscreen-active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMapOverlay(){
+        if(!overlay) return;
+        overlay.setAttribute('aria-hidden', 'true');
+        overlayIframe.src = '';
+        document.body.classList.remove('map-fullscreen-active');
+        document.body.style.overflow = '';
+      }
+
+      mapBtn?.addEventListener('click', openMapOverlay);
+      closeOverlay?.addEventListener('click', closeMapOverlay);
+      overlay?.addEventListener('click', (e) => {
+        if(e.target === overlay) closeMapOverlay();
+      });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMapOverlay(); });
+
+      // Simple client-side validation (avoid sending empty forms)
+      const form = document.getElementById('contactForm');
+      form?.addEventListener('submit', (e) => {
+        const name = form.querySelector('[name="name"]');
+        const email = form.querySelector('[name="email"]');
+        const subject = form.querySelector('[name="subject"]');
+        const message = form.querySelector('[name="message"]');
+        if(!name.value.trim() || !email.value.trim() || !subject.value.trim() || !message.value.trim()){
+          e.preventDefault();
+          alert('Please fill in name, email, subject and message before sending.');
+        } else {
+          // Allow submission to Formspree or your backend
+        }
+      });
+    })();
+  </script>
+
+<!-- COOKIE CONSENT: banner + preferences modal -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+  <div class="cookie-inner wrap">
+    <div class="cookie-left">
+      <strong>We use cookies</strong>
+      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn small">Accept all</button>
+      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal -->
+<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-panel">
+    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
+    <h3 id="cookie-modal-title">Cookie preferences</h3>
+    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+
+    <div class="cookie-prefs">
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Essential cookies</strong></div>
+        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
+        <div class="pref-toggle"><span class="chip">Required</span></div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Analytics cookies</strong></div>
+        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div class="pref-title"><strong>Marketing cookies</strong></div>
+        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
+        <div class="pref-toggle">
+          <label class="switch">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
+      <button id="cookie-save" class="btn">Save preferences</button>
+      <button class="modal-close btn outline cookie-close">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
