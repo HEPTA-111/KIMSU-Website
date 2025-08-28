@@ -555,7 +555,7 @@ a:focus, button:focus, input:focus, textarea:focus { outline:3px solid rgba(46,1
   width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--c-border); background:transparent; color:var(--c-text);
   font-size:0.95rem;
 }
-.appointment-form label span { display:none; } /* labels are visually hidden; placeholders provide guidance */
+.appointment-form label span { display:none; } 
 
 .form-grid .full { grid-column:1 / -1; }
 
@@ -662,11 +662,10 @@ a:focus, button:focus, input:focus, textarea:focus { outline:3px solid rgba(46,1
 
 /* ---------- Team images: avoid top cropping (index.html team section) ---------- */
 
-/* Ensure the team card clips cleanly and the image fills its box.
-   object-position: top center keeps the top of the photo visible (faces not cut). */
+
 .team-card {
-  overflow: hidden;               /* keep everything neat inside the card */
-  border-radius: 10px;            /* match card rounding if you use it */
+  overflow: hidden;               
+  border-radius: 10px;      
   transition: transform var(--transition);
 }
 
@@ -674,13 +673,13 @@ a:focus, button:focus, input:focus, textarea:focus { outline:3px solid rgba(46,1
 .team-card img {
   display: block;
   width: 100%;
-  height: 220px;                  /* visual box height for desktop */
-  object-fit: cover;              /* scale/crop to fill box */
-  object-position: top center;    /* show top of image (prevents cutting forehead) */
+  height: 220px;                
+  object-fit: cover;             
+  object-position: top center;   
   border-radius: 8px;
 }
 
-/* If you prefer slightly taller faces on large screens */
+
 @media (min-width:1200px) {
   .team-card img { height: 260px; }
 }
@@ -699,7 +698,7 @@ a:focus, button:focus, input:focus, textarea:focus { outline:3px solid rgba(46,1
   margin-top: 0.6rem;
 }
 
-/* optional: slight lift on hover to match other cards */
+
 .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 
 /* ---------- Back to top button ---------- */
@@ -732,7 +731,7 @@ a:focus, button:focus, input:focus, textarea:focus { outline:3px solid rgba(46,1
   outline: none;
 }
 
-/* hide on small screens if needed — still available if user wants */
+
 @media (max-width:420px) {
   .back-to-top { right: 12px; bottom: 12px; width:40px; height:40px; font-size:16px; }
 }
@@ -889,8 +888,7 @@ a.btn { display:inline-flex; align-items:center; justify-content:center; }
 /* Outline hover uses a soft brown wash */
 .btn.outline:hover,
 a.btn.outline:hover {
-  background: rgba(160,82,45,0.06); /* rgba(0xA0,0x52,0x2D,0.06) */
-  color: var(--c-secondary);
+  background: rgba(160,82,45,0.06); 
   transform: translateY(-2px);
 }
 
@@ -928,15 +926,166 @@ a.btn.outline:hover {
   color: var(--c-dark-secondary);
 }
 .theme-dark .btn:focus, .theme-dark .btn.outline:focus {
-  outline: 3px solid rgba(210,105,30,0.14); /* rgba(0xD2,0x69,0x1E,0.14) */
+  outline: 3px solid rgba(210,105,30,0.14); 
 }
 
-/* Ensure small modifiers inherit correctly */
+
 .doctor-actions .btn.small, .intro-actions .btn.small, .cta-actions .btn.small {
   padding: 7px 10px;
   font-size: 0.95rem;
 }
 
-/* Accessibility: ensure sufficient contrast for text on brown background */
-/* (Using white text on --c-secondary; if you replace --c-secondary choose a color with adequate contrast) */
 
+
+
+.doctor-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  flex-wrap: nowrap; 
+}
+
+/* Base look for compact inline buttons */
+.doctor-actions .btn.small,
+.doctor-actions a.btn,
+.doctor-actions .link-btn {
+  --btn-padding-y: 0.44rem;
+  --btn-padding-x: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: 0.95rem;
+  line-height: 1;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
+  box-shadow: var(--shadow);
+  min-height: 38px; 
+  min-width: 110px;
+}
+
+/* Primary (filled) button — warm brown */
+.doctor-actions .btn.small,
+.doctor-actions a.btn.primary {
+  background: var(--c-secondary);
+  color: var(--c-surface);
+  border-color: rgba(0,0,0,0.04);
+}
+
+/* Outline variant — transparent with brown border */
+.doctor-actions .btn.outline,
+.doctor-actions a.btn.outline {
+  background: transparent;
+  color: var(--c-secondary);
+  border-color: var(--c-secondary);
+  box-shadow: none;
+}
+
+/* Link-style button (View profile) — match outline but a little lighter */
+.doctor-actions .link-btn {
+  background: transparent;
+  color: var(--c-secondary);
+  border: 1px solid transparent;
+  box-shadow: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  min-width: auto;
+  font-weight: 600;
+}
+
+/* Hover / focus states */
+.doctor-actions .btn.small:hover,
+.doctor-actions a.btn:hover,
+.doctor-actions .link-btn:hover,
+.doctor-actions .btn.small:focus,
+.doctor-actions a.btn:focus,
+.doctor-actions .link-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  outline: none;
+}
+
+/* Stronger hover for primary button only */
+.doctor-actions .btn.small:hover,
+.doctor-actions a.btn.primary:hover {
+  filter: brightness(0.95);
+}
+
+/* Make sure anchor & button defaults don't add margins */
+.doctor-actions a,
+.doctor-actions button {
+  margin: 0;
+}
+
+/* When space is very narrow, allow wrapping but keep buttons compact */
+@media (max-width: 420px) {
+  .doctor-actions {
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .doctor-actions .btn.small,
+  .doctor-actions a.btn,
+  .doctor-actions .link-btn {
+    padding: 0.34rem 0.6rem;
+    font-size: 0.9rem;
+    min-width: 92px;
+  }
+}
+
+
+/* --- About page banner --- */
+.about-banner {
+  background: var(--c-surface);
+  border-radius: var(--radius);    
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow);
+  overflow: hidden;                
+  margin-bottom: 1.25rem;          
+}
+
+.about-banner img {
+  width: 100%;
+  height: auto;                   
+  display: block;               
+}
+
+.about-banner .banner-caption {
+  padding: 1.05rem;               
+  text-align: center;
+}
+
+.about-banner .banner-caption p {
+  font-size: 0.95rem;
+  color: var(--c-text-muted);
+  margin: 0 0 0.8rem 0;            
+  max-width: 720px;               
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ---------- Mobile navigation panel ---------- */
+.nav.nav-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  right: 0;
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: var(--shadow);
+  padding: 0.5rem;
+  gap: 0.25rem;
+}
+
+.nav.nav-open a {
+  padding: 0.75rem; 
+}

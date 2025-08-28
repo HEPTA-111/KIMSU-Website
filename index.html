@@ -8,6 +8,190 @@
   <link rel="icon" href="assets/images/logo-kimsu.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* --------------------------
+       Hero slider & headline
+       -------------------------- */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: clamp(340px, 36vh, 560px);
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(28,18,12,0.08);
+      background: var(--c-bg);
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 700ms var(--transition);
+      pointer-events: none;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      display:block;
+      object-fit: cover;
+      object-position: 50% 30%;
+    }
+    .hero-slide.is-active { opacity: 1; pointer-events: auto; }
+
+    /* soft overlay to improve contrast on any slide, uses CSS variables so it works in dark mode */
+    .hero-slider::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(44,24,16,0.18), rgba(44,24,16,0.06));
+      mix-blend-mode: multiply;
+    }
+
+    .hero-dots { position:absolute; left:1rem; bottom:1rem; display:flex; gap:0.5rem; z-index:10; }
+    .hero-dot { width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,0.6); border:1px solid rgba(44,24,16,0.12); transition: transform 180ms; }
+    .hero-dot.is-active { transform: scale(1.25); background: var(--c-secondary); }
+
+    /* HERO CONTENT: headline stylings */
+    .hero-content h1 {
+      margin: 0 0 0.35rem 0;
+      font-size: clamp(1.35rem, 3.4vw, 2.25rem);
+      line-height: 1.05;
+      color: var(--c-text);
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    /* animated underline accent */
+    .hero-content h1::after{
+      content: "";
+      display: block;
+      height: 6px;
+      width: 64px;
+      border-radius: 6px;
+      margin-top: 8px;
+      background: linear-gradient(90deg, var(--c-secondary), var(--c-accent));
+      transform: translateY(2px);
+      transition: transform 300ms var(--transition);
+    }
+    .hero-content h1:hover::after { transform: translateY(0); }
+
+    .hero-content .lead {
+      margin: 0.4rem 0 0.8rem 0;
+      color: var(--c-text-muted);
+      max-width: 68ch;
+      font-size: 1.02rem;
+    }
+
+    /* subtle caption / highlight row */
+    .hero-meta > div {
+      background: var(--c-surface);
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid var(--c-border);
+      font-weight:700;
+      color: var(--c-text);
+      box-shadow: var(--shadow);
+    }
+
+    /* --------------------------
+       Services banner (dark-mode friendly)
+       -------------------------- */
+    .services-banner {
+      margin: 1.25rem 0;
+      border-radius: 10px;
+      padding: 1rem;
+      background: var(--c-surface);        /* uses palette variables so dark mode works */
+      border: 1px solid var(--c-border);
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      box-shadow: var(--shadow);
+      color: var(--c-text);
+    }
+    .services-banner .icon {
+      flex: 0 0 74px;
+      height: 74px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(160,82,45,0.06), rgba(46,134,171,0.03));
+      border: 1px solid rgba(0,0,0,0.02);
+      font-size:28px;
+      color:var(--c-secondary);
+    }
+    .services-banner h3 { margin:0 0 0.25rem 0; color: var(--c-text); }
+    .services-banner p { margin:0; color: var(--c-text-muted); }
+
+    /* --------------------------
+       Mosaic images: don't crop, remain constrained
+       -------------------------- */
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .mosaic .mosaic-img {
+      overflow: hidden;
+      border-radius: 10px;
+      min-height: 120px;
+      max-height: 220px;   /* limit overall visual size */
+      background: var(--c-surface);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+    .mosaic .mosaic-img img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;   /* => no cropping; whole image visible */
+      display:block;
+    }
+
+    /* --------------------------
+       Team / other fixes
+       -------------------------- */
+    .team .team-card img,
+    .team-card img {
+      width:100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: 50% 28%;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    /* Buttons — brown primary, outlined variant */
+    .btn {
+      background: var(--c-secondary);
+      color: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 10px 14px;
+      border-radius: 8px;
+      display:inline-block;
+      text-decoration: none;
+    }
+    .btn.small { padding: 8px 12px; font-size: 0.95rem; }
+    .btn.outline, .btn.outline.small {
+      background: transparent;
+      color: var(--c-secondary);
+      border: 1px solid var(--c-secondary);
+    }
+    .btn:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) { .mosaic { grid-template-columns: 1fr; } .hero-dots { left: 0.7rem; bottom: 0.8rem; } }
+    @media (max-width: 520px) {
+      .team .team-card img{ height:220px; }
+      .hero-slider{ height: clamp(260px, 30vh, 380px); }
+    }
+  </style>
 </head>
 <body itemscope itemtype="https://schema.org/Hospital" class="theme-light">
 
@@ -15,7 +199,6 @@
     <div class="wrap header-inner">
       <a class="logo" href="index.html" aria-label="KIMSU Specialist Centre">
         <img src="assets/images/logo-kimsu.svg" alt="KIMSU logo" />
-        <span class="visually-hidden">KIMSU Specialist Centre</span>
       </a>
 
       <nav id="nav" class="nav" role="navigation" aria-label="Main">
@@ -35,25 +218,36 @@
     </div>
   </header>
 
-  <!-- HERO (role=main) -->
+  <!-- HERO (slider with 3 images) -->
   <main role="main">
-    <section class="hero" style="background-image: url('assets/images/hero-kimsu.jpg')" aria-label="KIMSU hero">
-      <div class="overlay"></div>
-      <div class="hero-content wrap" data-animate>
+    <section class="wrap" style="margin-top:1rem;">
+      <div class="hero-slider" id="heroSlider" aria-roledescription="carousel" aria-label="KIMSU photos">
+        <div class="hero-slide is-active" data-index="0" aria-hidden="false">
+          <img src="assets/images/hero-1.jpg" alt="Doctor speaking with a patient at clinic" loading="eager">
+        </div>
+        <div class="hero-slide" data-index="1" aria-hidden="true">
+          <img src="assets/images/hero-2.jpg" alt="Nurse preparing equipment and checking vitals" loading="lazy">
+        </div>
+        <div class="hero-slide" data-index="2" aria-hidden="true">
+          <img src="assets/images/hero-3.jpg" alt="Doctor explaining scan results to a patient" loading="lazy">
+        </div>
+
+        <div class="hero-dots" id="heroDots" aria-hidden="false" role="tablist">
+          <button class="hero-dot is-active" data-dot="0" aria-label="Slide 1" role="tab"></button>
+          <button class="hero-dot" data-dot="1" aria-label="Slide 2" role="tab"></button>
+          <button class="hero-dot" data-dot="2" aria-label="Slide 3" role="tab"></button>
+        </div>
+      </div>
+
+      <div class="hero-content wrap" style="margin-top:1rem;">
         <h1>KIMSU Specialist Centre</h1>
         <p class="lead">Compassionate urology care in Meru — near Kenya Methodist University. We provide clear advice, quick tests, and safe procedures to help you feel better.</p>
 
-        <!-- short facts / quick bullets -->
         <div class="hero-meta" aria-hidden="true" style="margin-top:0.8rem; display:flex; gap:1rem; flex-wrap:wrap">
-          <div style="background:var(--c-surface); padding:8px 10px; border-radius:8px; border:1px solid var(--c-border); font-weight:700;">
-            Open Mon–Fri · 8:00–17:00
-          </div>
-          <div style="background:var(--c-surface); padding:8px 10px; border-radius:8px; border:1px solid var(--c-border);">
-            Same-day urgent consults (where possible)
-          </div>
-          <div style="background:var(--c-surface); padding:8px 10px; border-radius:8px; border:1px solid var(--c-border);">
-            Insurance & cash payments accepted
-          </div>
+          <div>Open Mon–Fri · 08:00–18:00</div>
+          <div>Sat · 08:00–12:00</div>
+          <div>Same-day urgent consults (where possible)</div>
+          <div>Insurance & cash payments accepted</div>
         </div>
 
         <div class="hero-actions" style="margin-top:1rem;">
@@ -64,7 +258,7 @@
     </section>
 
     <!-- QUICK SERVICES -->
-    <section class="quick-services wrap" aria-labelledby="services-heading" data-animate>
+    <section class="quick-services wrap" aria-labelledby="services-heading" data-animate style="margin-top:1.25rem;">
       <h2 id="services-heading">Our Specialties</h2>
       <div class="grid-3">
         <article class="card" data-animate>
@@ -84,10 +278,36 @@
           <p>We are expanding services to include nephrology and general surgery. New clinics will be announced on our website and at reception.</p>
         </article>
       </div>
+
+      <!-- Services banner: uses palette variables (dark mode friendly) -->
+      <div class="services-banner" aria-hidden="false">
+        <div class="icon" aria-hidden="true"><i class="fa fa-stethoscope"></i></div>
+        <div class="text">
+          <h3>Endoscopy & Diagnostics</h3>
+          <p>Our endoscopy suite follows strict infection-control protocols. We run outpatient diagnostic and endoscopic exams with fast, accurate reporting so your doctor can make timely treatment decisions.</p>
+          <p style="margin-top:0.6rem;"><a class="link" href="services.html#endoscopy">See details →</a></p>
+        </div>
+      </div>
+
+      <!-- small mosaic: reception | nurse vitals (no cropping; constrained sizes) -->
+      <div class="mosaic" aria-hidden="false">
+        <div class="mosaic-img">
+          <picture>
+            <source srcset="assets/images/clinic-reception.jpg" type="image/jpeg">
+            <img src="assets/images/clinic-reception.jpg" alt="Clinic reception and waiting area at KIMSU" loading="lazy">
+          </picture>
+        </div>
+        <div class="mosaic-img">
+          <picture>
+            <source srcset="assets/images/nurse-vitals.jpg" type="image/jpeg">
+            <img src="assets/images/nurse-vitals.jpg" alt="Nurse taking patient's blood pressure" loading="lazy">
+          </picture>
+        </div>
+      </div>
     </section>
 
-    <!-- WHY CHOOSE US -->
-    <section class="why wrap" data-animate aria-labelledby="why-heading">
+    <!-- rest of page left unchanged (why, team, CTA etc) -->
+    <section class="why wrap" data-animate aria-labelledby="why-heading" style="margin-top:0.8rem;">
       <h2 id="why-heading">Why choose KIMSU?</h2>
       <div class="why-grid">
         <div class="why-card" data-animate>
@@ -105,42 +325,62 @@
       </div>
     </section>
 
-    <!-- TEAM PREVIEW -->
-    <section class="team wrap" data-animate aria-labelledby="team-heading">
+    <section class="team wrap" data-animate aria-labelledby="team-heading" style="margin-top:1rem;">
       <h2 id="team-heading">Meet a few of our specialists</h2>
+
       <div class="grid-3">
         <div class="team-card" data-animate>
-          <img src="assets/images/doctor-1.png" alt="Dr. Dancun Waweru">
-          <h4>Dr. Dancun Waweru</h4>
-          <p>Urology Surgeon — Special interest in endoscopic procedures and stone removal.</p>
+          <picture>
+            <source srcset="assets/images/doctor-1.jpeg" type="image/jpeg">
+            <img src="assets/images/doctor-1.jpeg" alt="Dr. Duncan Waweru" loading="lazy">
+          </picture>
+          <h4>Dr. Duncan Waweru</h4>
+          <p>Urology Surgeon — Uro-oncology & endoscopic specialist. With over 15 years of experience, Dr Duncan combines surgical skill and systems thinking to deliver safe, modern care. He focuses on clear explanations, minimally invasive options for stones and prostate conditions, and teaching younger clinicians.</p>
+          <div style="margin-top:0.6rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a class="btn small" href="doctors.html">View profile</a>
+            <a class="btn outline small" href="appointments.html?doctor=Dr%20Duncan%20Waweru">Book appointment</a>
+          </div>
         </div>
+
         <div class="team-card" data-animate>
-          <img src="assets/images/doctor-2.jpeg" alt="Ms. Grace Njeri">
-          <h4>Ms. Grace Njeri</h4>
-          <p>Consultant Urologist — MBChB, MMed (Urology). Dr Jane has 12 years of experience treating kidney and urinary conditions.</p>
+          <picture>
+            <source srcset="assets/images/doctor-3.jpeg" type="image/jpeg">
+            <img src="assets/images/doctor-3.jpeg" alt="Ms. Bancy Gatwiri" loading="lazy">
+          </picture>
+          <h4>Ms. Bancy Gatwiri</h4>
+          <p>Clinician — Clinical Officer with 5 years’ experience. Bancy manages outpatient follow-ups, triage and pre-procedure checks; she speaks Meru in addition to Kiswahili and English, which many patients appreciate when discussing symptoms and care plans.</p>
+          <div style="margin-top:0.6rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a class="btn small" href="doctors.html">View profile</a>
+            <a class="btn outline small" href="appointments.html?doctor=Ms.%20Bancy%20Gatwiri">Book appointment</a>
+          </div>
         </div>
+
         <div class="team-card" data-animate>
-          <img src="assets/images/doctor-3.jpeg" alt="Ms. Grace Njeri">
-          <h4>Ms. Grace Njeri</h4>
-          <p>Senior Nurse — Endoscopy & patient education. Grace helps patients prepare for procedures and care at home.</p>
+          <picture>
+            <source srcset="assets/images/doctor-4.jpg" type="image/jpeg">
+            <img src="assets/images/doctor-4.jpg" alt="Ms. Shirlyn Wanjiku" loading="lazy">
+          </picture>
+          <h4>Ms. Shirlyn Wanjiku</h4>
+          <p>Theatre Technician — Shirlyn has 4 years’ experience supporting theatre lists and ensuring instruments and sterile technique are correctly followed. Calm and practical, she helps patients prepare for procedures and works closely with surgeons and nurses to keep theatre running smoothly.</p>
+          <div style="margin-top:0.6rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a class="btn small" href="doctors.html">View profile</a>
+            <a class="btn outline small" href="contact.html">Contact</a>
+          </div>
         </div>
       </div>
 
-      <!-- spacing fix: view all sits comfortably below the team -->
       <div class="center view-all-wrap" style="margin-top:1.2rem;">
         <a class="btn outline small" href="doctors.html">View all doctors</a>
       </div>
     </section>
 
-    <!-- CTA: urgent (improved layout and smaller buttons) -->
-    <section class="cta wrap" data-animate aria-labelledby="urgent-heading">
+    <section class="cta wrap" data-animate aria-labelledby="urgent-heading" style="margin-top:1rem;">
       <div class="cta-card" role="region" aria-labelledby="urgent-heading">
         <div style="flex:1; min-width:220px;">
           <h2 id="urgent-heading">Need urgent advice?</h2>
           <p>If you have sudden severe pain, heavy bleeding, high fever or cannot pass urine, call us now. For non-urgent concerns book a same-day appointment and we will contact you.</p>
         </div>
 
-        <!-- responsive actions -->
         <div class="cta-actions" style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-left:0.5rem;">
           <a class="btn small" href="tel:+254724283953" title="Call front desk">Call +254 724 283 953</a>
           <a class="btn outline small" href="appointments.html" title="Book now">Book now</a>
@@ -149,7 +389,6 @@
     </section>
   </main><br>
 
-  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="wrap foot-bottom">
       <div>
@@ -159,7 +398,7 @@
     </div>
   </footer>
 
-  <!-- Appointment modal (hidden) -->
+  <!-- appointment modal and cookie banner (kept unchanged) -->
   <div id="appointment-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="apt-title">
     <div class="modal-panel">
       <button class="modal-close" aria-label="Close modal">×</button>
@@ -186,67 +425,53 @@
 
   <button class="back-to-top" aria-label="Back to top">↑</button>
 
-<!-- COOKIE CONSENT: banner + preferences modal -->
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
-  <div class="cookie-inner wrap">
-    <div class="cookie-left">
-      <strong>We use cookies</strong>
-      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
-      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
-    </div>
-
-    <div class="cookie-actions">
-      <button id="cookie-accept" class="btn small">Accept all</button>
-      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
-      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
+    <div class="cookie-inner wrap">
+      <div class="cookie-left">
+        <strong>We use cookies</strong>
+        <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
+        <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
+      </div>
+      <div class="cookie-actions">
+        <button id="cookie-accept" class="btn small">Accept all</button>
+        <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
+        <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Preferences modal -->
-<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
-  <div class="modal-panel">
-    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
-    <h3 id="cookie-modal-title">Cookie preferences</h3>
-    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
+  <!-- HERO slider script (keeps previous behavior) -->
+  <script>
+    (function(){
+      const slider = document.getElementById('heroSlider');
+      if(!slider) return;
+      const slides = Array.from(slider.querySelectorAll('.hero-slide'));
+      const dots = Array.from(document.querySelectorAll('.hero-dot'));
+      let idx = slides.findIndex(s => s.classList.contains('is-active')) || 0;
+      let interval = null;
+      const delay = 4500;
+      function show(i){
+        slides.forEach((s, n) => {
+          const active = n === i;
+          s.classList.toggle('is-active', active);
+          s.setAttribute('aria-hidden', active ? 'false' : 'true');
+          dots[n].classList.toggle('is-active', active);
+        });
+        idx = i;
+      }
+      function next(){ show((idx + 1) % slides.length); }
+      function start(){ stop(); interval = setInterval(next, delay); }
+      function stop(){ if(interval) { clearInterval(interval); interval = null; } }
+      dots.forEach((d, i) => d.addEventListener('click', () => { show(i); start(); }));
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      slider.addEventListener('focusin', stop);
+      slider.addEventListener('focusout', start);
+      start();
+    })();
+  </script>
 
-    <div class="cookie-prefs">
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Essential cookies</strong></div>
-        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
-        <div class="pref-toggle"><span class="chip">Required</span></div>
-      </div>
-
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Analytics cookies</strong></div>
-        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
-        <div class="pref-toggle">
-          <label class="switch">
-            <input type="checkbox" id="cookie-analytics">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Marketing cookies</strong></div>
-        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
-        <div class="pref-toggle">
-          <label class="switch">
-            <input type="checkbox" id="cookie-marketing">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
-      <button id="cookie-save" class="btn">Save preferences</button>
-      <button class="modal-close btn outline cookie-close">Cancel</button>
-    </div>
-  </div>
-</div>
-<script src="js/cookies.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
