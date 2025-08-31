@@ -208,22 +208,31 @@
       box-shadow: var(--shadow);
     }
 
-    /* Buttons — brown primary, outlined variant (uses palette tokens) */
+    /* Buttons — brown primary, outlined variant (now MATCHING services.html) */
     .btn {
-      background: var(--c-secondary);
-      color: white;
+      --btn-padding: 10px 16px;
+      display:inline-flex;
+      align-items:center;
+      gap:0.6rem;
+      padding: var(--btn-padding);
+      border-radius:10px;
       border: 1px solid rgba(0,0,0,0.06);
-      padding: 10px 14px;
-      border-radius: 8px;
-      display:inline-block;
-      text-decoration: none;
+      background: var(--accent-brown);
+      color: #fff;
+      font-weight:600;
+      text-decoration:none;
+      transition: transform .12s var(--transition), box-shadow .12s var(--transition);
+      box-shadow: 0 4px 12px rgba(139,90,43,0.12);
     }
-    .btn.small { padding: 8px 12px; font-size: 0.95rem; }
-    .btn.outline, .btn.outline.small {
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(17,12,8,0.09); }
+    .btn.outline {
       background: transparent;
-      color: var(--c-secondary);
-      border: 1px solid var(--c-secondary);
+      color: var(--accent-brown);
+      border: 1px solid var(--accent-brown);
+      box-shadow:none;
     }
+    .btn.small { padding:8px 12px; font-size:0.95rem; border-radius:8px; }
+
     .btn:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
 
     /* Responsive adjustments */

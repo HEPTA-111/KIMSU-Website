@@ -109,9 +109,11 @@ img{max-width:100%; display:block}
   color:var(--c-accent);
   transform:translateY(-2px);
 }
-.nav a.active{
-  color:var(--c-accent);
-  box-shadow: inset 0 -2px 0 var(--c-accent);
+
+
+.nav a.active {
+  color: var(--c-secondary); 
+  box-shadow: inset 0 -2px 0 var(--c-secondary); 
 }
 
 /* Mobile toggle */
@@ -1380,7 +1382,7 @@ button.btn {
   box-shadow: var(--shadow, 0 6px 18px rgba(0,0,0,0.04));
   min-height: 120px;
   box-sizing: border-box;
-  overflow: hidden;           /* prevents content spilling out */
+  overflow: hidden;       
 }
 
 /* Image column: fixed square on larger screens */
@@ -1404,7 +1406,7 @@ button.btn {
 /* Body column: allow text to wrap, prevent overflow pushing layout */
 .doctor-body {
   flex: 1 1 auto;
-  min-width: 0;                 /* critical to allow text wrapping in flex children */
+  min-width: 0;                
   overflow: visible;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -1470,8 +1472,8 @@ button.btn {
 
   .doctor-media img {
     width: 100%;
-    height: 200px;        /* choose a reasonable fixed height for photos on narrow screens */
-    object-fit: cover;    /* crop vertically if needed to keep nice composition */
+    height: 200px;        
+    object-fit: cover;   
     border-radius: 8px;
   }
 
@@ -1484,70 +1486,115 @@ button.btn {
 .doctor-card :focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset: 3px; border-radius: 8px; }
 
 
-/* ==========================
-   KIMSU shared theme tokens
-   (Paste this at top of css/main.css)
-   ========================== */
+/* === Restore small decorative & icon styles (paste at end of css/main.css) === */
 
-:root{
-  /* primary accents */
-  --accent-brown: #8B5A2B;
-  --accent-brown-2: #A06B3A;
+/* small glass token for subtle translucent backgrounds */
+:root{ --glass: rgba(255,255,255,0.6); }
 
-  /* semantic aliases */
-  --c-secondary: var(--accent-brown);
-  --c-accent: var(--accent-brown-2);
+/* Hero kicker (small pill with icon) */
+.hero-kicker{
+  display:inline-flex;
+  gap:.5rem;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  color:var(--accent-brown);
+  background: linear-gradient(90deg, rgba(139,90,43,0.08), rgba(160,100,50,0.03));
+  border:1px solid rgba(139,90,43,0.06);
+  box-shadow: inset 0 2px 6px rgba(139,90,43,0.02);
+}
+.hero-kicker i{ width:18px; text-align:center; font-size:0.95rem; }
 
-  /* surfaces & text (light mode defaults) */
-  --c-bg: #ffffff;
-  --c-surface: #ffffff;
-  --c-border: rgba(17,17,17,0.06);
-  --c-text: #111214;
-  --c-text-muted: #6b6b6b;
-
-  /* shadows & UI tokens */
-  --shadow: 0 8px 28px rgba(28,18,12,0.08);
-  --shadow-soft: 0 8px 24px rgba(17,12,8,0.06);
-  --shadow-strong: 0 12px 36px rgba(17,12,8,0.09);
-  --shadow-hover: 0 10px 30px rgba(17,12,8,0.06);
-
-  --dot-bg: rgba(255,255,255,0.6);
-  --overlay-start: rgba(139,90,43,0.18);
-  --overlay-end: rgba(139,90,43,0.06);
-
-  --radius-lg: 12px;
-  --transition: cubic-bezier(.2,.9,.2,1);
+/* hero-meta small caption boxes */
+.hero-meta > div{
+  background: linear-gradient(180deg, var(--c-surface), rgba(255,255,255,0.96));
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid var(--c-border);
+  font-weight:700;
+  color:var(--c-text);
+  box-shadow: var(--shadow-soft);
+  display:inline-block;
 }
 
-/* Dark theme override — matches the visual intent in services.html dark mode */
-body.theme-dark,
-:root.theme-dark {
-  --c-bg: #0b0f12;
-  --c-surface: #0f1720;
-  --c-border: rgba(255,255,255,0.05);
-  --c-text: #e6eef6;
-  --c-text-muted: #9aa0a6;
-
-  --shadow: 0 10px 40px rgba(2,6,10,0.6);
-  --shadow-soft: 0 10px 28px rgba(2,6,10,0.45);
-  --shadow-strong: 0 18px 48px rgba(2,6,10,0.55);
-  --shadow-hover: 0 12px 42px rgba(2,6,10,0.55);
-
-  --dot-bg: rgba(255,255,255,0.08);
-  --overlay-start: rgba(0,0,0,0.5);
-  --overlay-end: rgba(0,0,0,0.20);
+/* circular icon utility for services / team */
+.icon, .icon-circle{
+  width:56px; height:56px; border-radius:12px;
+  display:grid; place-items:center; font-size:20px;
+  background: linear-gradient(135deg, rgba(139,90,43,0.09), rgba(160,100,50,0.03));
+  color: var(--accent-brown);
+  border:1px solid rgba(139,90,43,0.06);
+  box-shadow: 0 6px 18px rgba(139,90,43,0.03) inset;
 }
 
-/* Small accessibility helpers that rely on the same accent */
-:focus-visible {
-  outline: 3px solid rgba(139,90,43,0.14);
-  outline-offset: 3px;
-  border-radius: 6px;
+/* allow smaller icon variant */
+.icon.small{ width:44px; height:44px; font-size:18px; border-radius:10px; }
+
+/* team / card icon decoration (for <i> tags used as icons) */
+.team-card i, .pillar i, .why-card i {
+  display:block;
+  font-size:1.5rem;
+  color:var(--accent-brown);
+  background: linear-gradient(180deg, rgba(139,90,43,0.06), rgba(160,100,50,0.02));
+  width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+  border:1px solid rgba(139,90,43,0.05);
+  box-shadow: 0 6px 16px rgba(139,90,43,0.03);
+  margin-bottom:0.6rem;
 }
 
-/* Helpful aliases used in multiple pages */
-.bg-surface { background: var(--c-surface); }
-.text-muted { color: var(--c-text-muted); }
-.border-standard { border: 1px solid var(--c-border); }
+/* service-card icon spacing (restores previous visual) */
+.service-card .icon{
+  width:58px; height:58px; border-radius:12px; font-size:22px;
+  display:grid; place-items:center; color:var(--accent-brown);
+  background: linear-gradient(135deg, rgba(139,90,43,0.09), rgba(160,100,50,0.03));
+  border:1px solid rgba(139,90,43,0.06);
+}
 
-/* End of shared theme tokens */
+
+.pill, .tag {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.9rem;
+  background: rgba(139,90,43,0.06); color:var(--accent-brown);
+  border: 1px solid rgba(139,90,43,0.04);
+}
+
+
+.kicker-cta{
+  display:inline-flex; gap:.5rem; align-items:center;
+  padding:6px 10px; border-radius:8px; background:linear-gradient(90deg, rgba(139,90,43,0.06), rgba(160,100,50,0.02));
+  color:var(--accent-brown); font-weight:700; border:1px solid rgba(139,90,43,0.04);
+}
+
+
+.hero-slider::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.06));
+}
+
+
+.section-underline{
+  height:6px; width:72px; border-radius:6px;
+  background: linear-gradient(90deg, var(--accent-brown), var(--accent-brown-2));
+  margin-top:8px;
+}
+
+
+.btn i.fa, .btn i.fas, .icon i.fa { display:inline-block; width:1.1em; text-align:center; }
+
+
+.services-list > h2{
+  box-shadow: 0 6px 18px rgba(139,90,43,0.03) inset;
+}
+
+
+.theme-dark .hero-kicker{ background: linear-gradient(90deg, rgba(184,134,88,0.06), rgba(160,100,50,0.03)); color:var(--accent-brown) }
+.theme-dark .icon, .theme-dark .service-card .icon, .theme-dark .team-card i { background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:var(--accent-brown); border-color: rgba(255,255,255,0.04); }
+.theme-dark .pill, .theme-dark .tag { background: rgba(184,134,88,0.03); color:var(--accent-brown); border-color: rgba(184,134,88,0.06); }
+
+
+.icon, .service-card .icon, .team-card i { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+
+
+
