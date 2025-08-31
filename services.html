@@ -7,7 +7,170 @@
   <meta name="description" content="Services at KIMSU Specialist Centre — urology and patient care services." />
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* --- Theme overrides & creative styling --- */
+    :root{
+      --accent-brown: #8B5A2B; /* main warm/brown accent */
+      --accent-brown-2: #A06B3A;
+      --glass: rgba(255,255,255,0.6);
+      --card-bg: var(--c-surface, #fff);
+      --muted: var(--c-text-muted, #6b6b6b);
+      --shadow-soft: 0 8px 24px rgba(17,12,8,0.06);
+      --shadow-strong: 0 12px 36px rgba(17,12,8,0.09);
+      --radius-lg: 14px;
+    }
 
+    /* Page hero */
+    .page-hero {
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:1.25rem;
+      align-items:stretch;
+      margin: 0 auto 1.25rem;
+      max-width:1200px;
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(235,230,225,0.15), rgba(255,255,255,0.02));
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow-soft);
+    }
+    .page-hero .hero-left h1 { margin:0 0 0.5rem; font-size:clamp(1.6rem, 2.6vw, 2.2rem); }
+    .page-hero .hero-left p.lead { margin:0 0 1rem; color:var(--muted); line-height:1.45; }
+    .hero-kicker {
+      display:inline-flex;
+      gap:0.5rem;
+      align-items:center;
+      padding:6px 10px;
+      background: linear-gradient(90deg, rgba(139,90,43,0.08), rgba(160,100,50,0.03));
+      color:var(--accent-brown);
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid rgba(139,90,43,0.06);
+      margin-bottom:0.6rem;
+    }
+    .hero-actions { display:flex; gap:0.6rem; margin-top:0.7rem; flex-wrap:wrap; }
+
+    /* Brown buttons */
+    .btn {
+      --btn-padding: 10px 16px;
+      display:inline-flex;
+      align-items:center;
+      gap:0.6rem;
+      padding: var(--btn-padding);
+      border-radius:10px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: var(--accent-brown);
+      color: #fff;
+      font-weight:600;
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 4px 12px rgba(139,90,43,0.12);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); }
+    .btn.outline {
+      background: transparent;
+      color: var(--accent-brown);
+      border: 1px solid var(--accent-brown);
+      box-shadow:none;
+    }
+    .btn.small { padding:8px 12px; font-size:0.95rem; border-radius:8px; }
+
+    /* Services grid */
+    .service-grid {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:1rem;
+      margin:1.25rem 0;
+      max-width:1200px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .service-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,240,0.95));
+      border-radius:12px;
+      padding:1.1rem;
+      border: 1px solid var(--c-border);
+      box-shadow: var(--shadow-soft);
+      display:flex;
+      flex-direction:column;
+      gap:0.8rem;
+      min-height:220px;
+    }
+    .service-card .icon {
+      width:58px; height:58px; border-radius:12px; display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(139,90,43,0.09), rgba(160,100,50,0.03));
+      color:var(--accent-brown);
+      font-size:22px;
+      border:1px solid rgba(139,90,43,0.06);
+    }
+    .service-card h3 { margin:0; font-size:1.05rem; }
+    .service-card p.muted { color:var(--muted); margin:0; font-size:0.95rem; }
+    .service-card .card-foot { margin-top:auto; display:flex; gap:0.6rem; align-items:center; }
+
+    /* Accordion details (hidden by default) */
+    .acc-toggle {
+      background: transparent;
+      border: none;
+      color: var(--accent-brown-2);
+      font-weight:700;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      padding:6px 0;
+    }
+    .acc-panel { margin-top:0.6rem; color:var(--muted); line-height:1.45; }
+    .acc-panel ul { margin:0.6rem 0 0 1.05rem; }
+
+    /* Big grouped "Services offered" creative list */
+    .services-full {
+      max-width:1200px;
+      margin:1.25rem auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:1rem;
+      align-items:start;
+    }
+    .services-list {
+      background: var(--card-bg);
+      border-radius:12px;
+      padding:1rem;
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow-soft);
+    }
+    .service-group { margin-bottom:1rem; }
+    .service-group h4 { margin:0 0 0.5rem; display:flex; align-items:center; gap:0.6rem; }
+    .service-group p.lead { margin:0 0 0.5rem; color:var(--muted); }
+    .service-group ul { margin:0; padding-left:1rem; }
+    .service-group li { margin:0.35rem 0; }
+
+    /* Right column: quick tags + contact CTA */
+    .quick-aside {
+      border-radius:12px;
+      padding:1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,245,240,0.98));
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow-soft);
+    }
+    .quick-aside h4 { margin-top:0; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.6rem; }
+    .tag { padding:6px 10px; border-radius:999px; background:rgba(139,90,43,0.08); color:var(--accent-brown); font-weight:700; font-size:0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .page-hero { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-full { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: unset; }
+      .page-hero { padding:0.8rem; border-radius:10px; }
+    }
+
+    /* subtle accessibility / focus */
+    .acc-toggle:focus, .btn:focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset:3px; border-radius:8px; }
+  </style>
 </head>
 <body class="theme-light" itemscope itemtype="https://schema.org/MedicalBusiness">
 
@@ -28,159 +191,254 @@
         <button id="btn-nav-2" class="btn-icon mobile-only" aria-label="Open menu"><i class="fa fa-bars"></i></button>
       </div>
     </div>
-    </div>
   </header>
 
   <main class="wrap" role="main">
 
-    <!-- Page header -->
-    <section class="page-header" data-animate>
-      <h1>Our Services</h1>
-      <p>We focus on urology today and are expanding into more specialties soon. Below you will find short, clear descriptions of the services we offer and what you can expect at your visit.</p>
-    </section>
+    <!-- Hero -->
+    <section class="page-hero" aria-labelledby="services-hero">
+      <div class="hero-left">
+        <div class="hero-kicker"><i class="fa fa-clinic-medical"></i><span>Specialist Urology</span></div>
+        <h1 id="services-hero">Services & Procedures — clear, practical care</h1>
+        <p class="lead">We focus on safe outpatient urology services, fast diagnostics and friendly follow-up. Below you'll find a creative overview of what we deliver — grouped so you can find the right service quickly.</p>
+        <div class="hero-actions">
+          <a class="btn small" href="appointments.html"><i class="fa fa-calendar-check"></i> Book appointment</a>
+          <a class="btn outline small" href="doctors.html"><i class="fa fa-users"></i> Meet the team</a>
+        </div>
+      </div>
 
-    <!-- Featured service -->
-    <section class="wrap" data-animate>
-      <div class="card featured-service" role="region" aria-label="Featured service: Urology">
-        <div class="featured-left">
-          <h2>Featured: Urology</h2>
-          <p>Our main specialty — we treat urinary tract infections, kidney stones, prostate problems, and other urinary concerns. We use gentle, evidence-based tests and procedures to find the cause and help you recover quickly.</p>
-
-          <h4>Typical care steps</h4>
-          <ol>
-            <li><strong>Consult:</strong> Speak with a urology clinician about symptoms and history.</li>
-            <li><strong>Tests:</strong> On-site ultrasound, urine tests, or blood tests as needed.</li>
-            <li><strong>Treatment:</strong> Medication, simple procedures, or referral for surgery if required.</li>
-            <li><strong>Follow-up:</strong> A nurse or doctor checks progress and advice for home care.</li>
-          </ol>
-
-          <div style="margin-top:0.8rem;">
-            <a class="btn small" href="appointments.html">Book Urology Visit</a>
-            <a class="btn outline small" href="doctors.html">Meet our team</a>
-          </div>
+      <div class="hero-right" aria-hidden="true" style="display:flex; flex-direction:column; gap:0.7rem;">
+        <div style="background:linear-gradient(180deg, rgba(255,255,255,0.9), transparent); padding:10px; border-radius:10px; border:1px solid var(--c-border); box-shadow:var(--shadow-soft);">
+          <strong style="color:var(--accent-brown); display:block;">Quick access</strong>
+          <p class="muted" style="margin:6px 0 0;">Urgent? Call now for same-day advice where possible.</p>
+          <a class="btn small" href="tel:+254724283953" style="margin-top:0.6rem;"><i class="fa fa-phone"></i> Call +254 724 283 953</a>
         </div>
 
-        <div class="featured-right">
-          <div class="feature-stats">
-            <div><strong>4</strong><span>Specialist clinicians</span></div>
-            <div><strong>On-site</strong><span>Ultrasound & Lab</span></div>
-            <div><strong>95%</strong><span>Patient satisfaction</span></div>
-          </div>
+        <div style="background:linear-gradient(180deg, rgba(250,245,240,0.9), transparent); padding:10px; border-radius:10px; border:1px solid var(--c-border); box-shadow:var(--shadow-soft);">
+          <strong style="color:var(--accent-brown); display:block;">Diagnostics</strong>
+          <p class="muted" style="margin:6px 0 0;">On-site ultrasound and basic lab testing for quick answers.</p>
         </div>
       </div>
     </section>
 
-    <!-- Services grid with accordion -->
-    <section class="services-grid grid-3" data-animate aria-label="Services list">
-
-      <!-- Service card: Urology -->
-      <article id="urology" class="service-card" data-animate>
-        <h3>Urology</h3>
-        <p class="muted">Consultation, diagnostics and minimally invasive procedures.</p>
-
-        <div class="service-accordion">
-          <button class="acc-toggle" aria-expanded="false" aria-controls="urology-details">More details</button>
-          <div id="urology-details" class="acc-panel" hidden>
-            <p>We diagnose and treat problems like kidney stones, urinary infections, blood in urine, and prostate symptoms. Tests include urine tests, blood tests and ultrasound. Minor procedures (like rigid or flexible endoscopy) are done by specialists.</p>
-            <p><strong>Real-life example:</strong> If you have sudden severe back pain and blood in urine, we may do an ultrasound and urine tests the same day, then plan treatment (medicine or stone removal).</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Service card: Endoscopy -->
+    <!-- service preview cards -->
+    <section class="service-grid" aria-label="Service categories">
       <article class="service-card" data-animate>
-        <h3>Endoscopy & Diagnostics</h3>
-        <p class="muted">Safe outpatient endoscopy and quick diagnostic reports.</p>
-
-        <div class="service-accordion">
-          <button class="acc-toggle" aria-expanded="false" aria-controls="endo-details">More details</button>
-          <div id="endo-details" class="acc-panel" hidden>
-            <p>Endoscopy lets us look inside the urinary tract using a thin camera. Most procedures are same-day and done under local or light sedation. We follow strict cleaning and safety steps.</p>
-            <p><strong>Real-life example:</strong> A patient with recurring infections might have an endoscopy to check the bladder and urethra for a cause.</p>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-user-md"></i></div>
+          <div>
+            <h3>Consultation & Clinics</h3>
+            <p class="muted">One-on-one consultations, visiting consultant clinics and follow-ups.</p>
           </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c1">See examples</button>
+          <a class="btn outline small" href="appointments.html">Book visit</a>
+        </div>
+        <div id="c1" class="acc-panel" hidden>
+          <p>Initial assessment, triage for urgent problems, medication reviews and connection with specialists when needed.</p>
         </div>
       </article>
 
-      <!-- Service card: Outpatient -->
       <article class="service-card" data-animate>
-        <h3>Outpatient Care</h3>
-        <p class="muted">Follow-up visits, medication checks and referral coordination.</p>
-
-        <div class="service-accordion">
-          <button class="acc-toggle" aria-expanded="false" aria-controls="out-details">More details</button>
-          <div id="out-details" class="acc-panel" hidden>
-            <p>We run follow-up clinics to check recovery and adjust medication. If a patient needs surgery or specialist care elsewhere we help with coordinated referrals and notes.</p>
-            <p><strong>Real-life example:</strong> After stone removal, patients return for a follow-up visit to check wounds and give advice for preventing future stones.</p>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-stethoscope"></i></div>
+          <div>
+            <h3>Diagnostics & Imaging</h3>
+            <p class="muted">Ultrasound, urine and blood testing with rapid reporting.</p>
           </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c2">See examples</button>
+          <a class="btn outline small" href="services.html#endoscopy">Learn more</a>
+        </div>
+        <div id="c2" class="acc-panel" hidden>
+          <p>Ultrasound of kidneys/bladder, point-of-care urine tests, and support for necessary imaging referrals.</p>
         </div>
       </article>
 
-      <!-- Service card: Planned specialties placeholder -->
       <article class="service-card" data-animate>
-        <h3>New specialties (coming soon)</h3>
-        <p class="muted">Nephrology, general surgery and more — watch for announcements.</p>
-
-        <div class="service-accordion">
-          <button class="acc-toggle" aria-expanded="false" aria-controls="coming-details">More details</button>
-          <div id="coming-details" class="acc-panel" hidden>
-            <p>We plan to add kidney specialists and general surgical services. These will be added when we have trained staff and necessary equipment in place.</p>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-camera"></i></div>
+          <div>
+            <h3>Endoscopy & Procedures</h3>
+            <p class="muted">Flexible/rigid cystoscopy, ureteroscopy, JJ stent procedures and laser-assisted stone treatment.</p>
           </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c3">See examples</button>
+          <a class="btn outline small" href="services.html#endoscopy">Details</a>
+        </div>
+        <div id="c3" class="acc-panel" hidden>
+          <ul>
+            <li>Cystoscopy (diagnostic & therapeutic)</li>
+            <li>Endoscopic stone extraction and stent management</li>
+            <li>Laser urethrotomy / lithotripsy where appropriate</li>
+          </ul>
         </div>
       </article>
 
+      <article class="service-card" data-animate>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-procedures"></i></div>
+          <div>
+            <h3>Day-case & Minor Surgery</h3>
+            <p class="muted">Vasectomy, hydrocele/varicocele repair, TURP and other day-case operations.</p>
+          </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c4">See examples</button>
+          <a class="btn outline small" href="contact.html">Pre-op info</a>
+        </div>
+        <div id="c4" class="acc-panel" hidden>
+          <p>We provide safe theatre lists with trained staff; many procedures are same-day with clear aftercare and follow-up.</p>
+        </div>
+      </article>
+
+      <article class="service-card" data-animate>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-syringe"></i></div>
+          <div>
+            <h3>Reconstructive & Specialist Care</h3>
+            <p class="muted">Urethroplasty, TURBT, pyeloplasty and coordination with visiting specialists.</p>
+          </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c5">See examples</button>
+          <a class="btn outline small" href="doctors.html">Consultants</a>
+        </div>
+        <div id="c5" class="acc-panel" hidden>
+          <ul>
+            <li>Urethroplasty & ureteral reconstruction</li>
+            <li>Transurethral resection of bladder tumour (TURBT)</li>
+            <li>Percutaneous nephrostomy referrals where needed</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="service-card" data-animate>
+        <div style="display:flex; gap:0.85rem; align-items:flex-start;">
+          <div class="icon"><i class="fa fa-heartbeat"></i></div>
+          <div>
+            <h3>Supportive Care & Nursing</h3>
+            <p class="muted">Pre-op checks, wound care, stoma and catheter support and patient education.</p>
+          </div>
+        </div>
+        <div class="card-foot">
+          <button class="acc-toggle" aria-expanded="false" aria-controls="c6">See examples</button>
+          <a class="btn outline small" href="contact.html">Contact nursing</a>
+        </div>
+        <div id="c6" class="acc-panel" hidden>
+          <p>Nursing-led clinics for stent removal, wound checks and step-down care after procedures.</p>
+        </div>
+      </article>
     </section>
 
-    <!-- What to expect (simple steps) -->
-    <section class="wrap" data-animate>
-      <h2>What to expect at your visit</h2>
-      <div class="card">
-        <ol>
-          <li><strong>Check-in:</strong> Front desk confirms your details and insurance (if any).</li>
-          <li><strong>Consultation:</strong> The clinician asks about symptoms and medical history.</li>
-          <li><strong>Tests:</strong> On-site urine or blood tests and ultrasound if needed.</li>
-          <li><strong>Plan:</strong> We explain treatment options and next steps in plain language.</li>
-        </ol>
-      </div>
-    </section>
+    <!-- Full services (detailed grouped list) -->
+    <section class="services-full" aria-label="All services offered">
+      <div class="services-list">
+        <h2 style="margin-top:0; margin-bottom:0.6rem;">Services offered — grouped for clarity</h2>
 
-    <!-- Preparing for your visit -->
-    <section class="wrap" data-animate>
-      <h2>How to prepare</h2>
-      <div class="card">
-        <ul>
-          <li>Bring your ID and any medicine list.</li>
-          <li>If you have test results from other clinics bring copies or photos.</li>
-          <li>For some procedures you may need to fast — our staff will tell you beforehand.</li>
-        </ul>
-      </div>
-    </section>
+        <div class="service-group">
+          <h4><i class="fa fa-user"></i> Consultations</h4>
+          <p class="lead">Initial assessment, visiting consultant clinics and routine follow-ups.</p>
+          <ul>
+            <li>General urology consultation</li>
+            <li>Visiting consultant clinics (rotating specialists)</li>
+            <li>Pre-op assessment, medication reviews, and triage</li>
+          </ul>
+        </div>
 
-    <!-- Testimonial + FAQ -->
-    <section class="grid-2" data-animate>
-      <div class="card testimonial">
-        <h3>Patient story</h3>
-        <p>"The staff explained everything and helped me choose a simple treatment. I felt safe and cared for." — <strong>Amina</strong></p>
+        <div class="service-group">
+          <h4><i class="fa fa-x-ray"></i> Diagnostics</h4>
+          <p class="lead">On-site tests for fast answers.</p>
+          <ul>
+            <li>Ultrasound (kidney, bladder)</li>
+            <li>Urine microscopy & culture, blood tests</li>
+            <li>Endoscopic diagnostics (cystoscopy, ureteroscopy)</li>
+          </ul>
+        </div>
+
+        <div class="service-group">
+          <h4><i class="fa fa-tools"></i> Endoscopic & Minor Procedures</h4>
+          <ul>
+            <li>Cystoscopy (rigid & flexible), DVIU</li>
+            <li>Endoscopic stone extraction, laser lithotripsy (where indicated)</li>
+            <li>JJ stent insertion/removal, pan endoscopy</li>
+          </ul>
+        </div>
+
+        <div class="service-group">
+          <h4><i class="fa fa-procedures"></i> Surgical Procedures</h4>
+          <ul>
+            <li>Vasectomy & vasectomy reversal</li>
+            <li>TURP (transurethral resection of prostate)</li>
+            <li>Hydrocele / varicocele repair, penile implant surgery</li>
+            <li>Cystectomy, prostatectomy (select cases & referral)</li>
+          </ul>
+        </div>
+
+        <div class="service-group">
+          <h4><i class="fa fa-hospital"></i> Reconstructive & Specialist Care</h4>
+          <ul>
+            <li>Urethroplasty, pyeloplasty, ureteroscopy for upper tract disease</li>
+            <li>Transurethral resection of bladder tumour (TURBT)</li>
+            <li>Percutaneous nephrostomy coordination & referrals</li>
+          </ul>
+        </div>
+
+        <div class="service-group">
+          <h4><i class="fa fa-hand-holding-medical"></i> Other procedures & support</h4>
+          <ul>
+            <li>Meatoplasty, repair of penile fractures, stent removals</li>
+            <li>Catheter management, bladder outlet dilatation</li>
+            <li>Circumcision & minor outpatient procedures</li>
+          </ul>
+        </div>
       </div>
 
-      <aside class="card" aria-label="Service FAQ">
-        <h3>Quick FAQ</h3>
-        <p><strong>Do you accept insurance?</strong> Yes — please call reception to confirm your plan.</p>
-        <p><strong>How long is a typical visit?</strong> A follow-up visit is often 15–30 minutes; initial consultations may take up to an hour if tests are needed.</p>
-        <p><strong>Do you offer emergency care?</strong> For severe or life-threatening emergencies, call the ambulance or go to the nearest full hospital. We offer urgent outpatient consults where possible.</p>
+      <aside class="quick-aside" aria-labelledby="quick-aside-title">
+        <h4 id="quick-aside-title">Quick tags</h4>
+        <div class="tag-list">
+          <div class="tag">Ultrasound</div>
+          <div class="tag">Endoscopy</div>
+          <div class="tag">Day surgery</div>
+          <div class="tag">Stone care</div>
+          <div class="tag">Oncology support</div>
+          <div class="tag">Catheter services</div>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <p class="muted">Not sure what you need? Call reception — we will advise which clinic or test is right for you.</p>
+          <a class="btn small" href="tel:+254724283953" style="margin-top:0.6rem; display:inline-flex;"><i class="fa fa-phone"></i> Call reception</a>
+          <a class="btn outline small" href="appointments.html" style="margin-top:0.6rem; display:inline-flex; margin-left:0.6rem;">Book online</a>
+        </div>
       </aside>
     </section>
 
-    <!-- Booking CTA -->
-    <section class="wrap" data-animate>
-      <div class="center" style="margin:1rem 0;">
-        <a class="btn" href="appointments.html">Book Appointment</a>
-        <a class="btn outline" href="contact.html" style="margin-left:0.6rem;">Contact us</a>
+    <!-- What to expect & prepare -->
+    <section style="max-width:1200px; margin:1.25rem auto;">
+      <div class="card">
+        <h3>What to expect at your visit</h3>
+        <ol>
+          <li><strong>Check-in:</strong> Reception confirms details and insurance.</li>
+          <li><strong>Consult:</strong> Clinician takes history and arranges tests if needed.</li>
+          <li><strong>Plan:</strong> We explain your options and next steps plainly.</li>
+        </ol>
+      </div>
+
+      <div class="card" style="margin-top:0.9rem;">
+        <h3>How to prepare</h3>
+        <ul>
+          <li>Bring ID, medication list and any previous test results.</li>
+          <li>Follow fasting instructions if advised for a procedure.</li>
+          <li>Ask reception about transport or post-procedure arrangements if needed.</li>
+        </ul>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="wrap foot-bottom">
       <div>
@@ -190,100 +448,40 @@
     </div>
   </footer>
 
-  <!-- Inline script for accordion behavior (keeps this page dynamic without editing main.js) -->
+  <!-- Accordion script (accessible, keyboard friendly) -->
   <script>
     (function(){
       const toggles = Array.from(document.querySelectorAll('.acc-toggle'));
       toggles.forEach(btn => {
-        const panelId = btn.getAttribute('aria-controls');
-        const panel = document.getElementById(panelId);
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
         btn.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          // collapse all panels in same container (optional)
-          const container = btn.closest('.services-grid') || document;
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          // collapse all siblings in the service-grid scope
+          const container = btn.closest('.service-grid') || document;
           container.querySelectorAll('.acc-toggle').forEach(b => {
-            if (b !== btn) { b.setAttribute('aria-expanded','false'); const p = document.getElementById(b.getAttribute('aria-controls')); if(p) p.hidden = true; }
+            if(b !== btn) {
+              b.setAttribute('aria-expanded','false');
+              const p = document.getElementById(b.getAttribute('aria-controls'));
+              if(p) p.hidden = true;
+            }
           });
-          // toggle this panel
-          btn.setAttribute('aria-expanded', String(!expanded));
-          if(panel) panel.hidden = expanded;
+          btn.setAttribute('aria-expanded', String(!open));
+          if(panel) panel.hidden = open;
         });
-
-        // keyboard support
         btn.addEventListener('keydown', (e) => {
-          if(e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            btn.click();
-          }
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
         });
       });
-
-      // make sure panels are hidden on load
+      // hide panels initially
       document.querySelectorAll('.acc-panel').forEach(p => p.hidden = true);
+
+      // small year filler
+      const y = new Date().getFullYear();
+      document.getElementById('year')?.replaceWith(document.createTextNode(y));
     })();
   </script>
 
-<!-- COOKIE CONSENT: banner + preferences modal -->
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" aria-hidden="true">
-  <div class="cookie-inner wrap">
-    <div class="cookie-left">
-      <strong>We use cookies</strong>
-      <p class="muted">We use essential cookies to run the site. We also use optional cookies for analytics and (if you allow) marketing to improve services. You can accept all, reject non-essential cookies, or choose your preferences.</p>
-      <p class="small"><a href="cookie-policy.html" class="link">Read our Cookie Policy</a></p>
-    </div>
-
-    <div class="cookie-actions">
-      <button id="cookie-accept" class="btn small">Accept all</button>
-      <button id="cookie-reject" class="btn outline small">Reject non-essential</button>
-      <button id="cookie-preferences" class="btn outline small">Manage preferences</button>
-    </div>
-  </div>
-</div>
-
-<!-- Preferences modal -->
-<div id="cookie-modal" class="modal cookie-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
-  <div class="modal-panel">
-    <button class="modal-close cookie-close" aria-label="Close preferences">×</button>
-    <h3 id="cookie-modal-title">Cookie preferences</h3>
-    <p class="muted">Toggle which optional cookies you allow. Essential cookies are required for the site to work and cannot be turned off.</p>
-
-    <div class="cookie-prefs">
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Essential cookies</strong></div>
-        <div class="pref-desc muted">Required for the website to function (e.g. session, security). Always enabled.</div>
-        <div class="pref-toggle"><span class="chip">Required</span></div>
-      </div>
-
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Analytics cookies</strong></div>
-        <div class="pref-desc muted">Help us understand how visitors use the site so we can improve it (anonymous stats).</div>
-        <div class="pref-toggle">
-          <label class="switch">
-            <input type="checkbox" id="cookie-analytics">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="cookie-pref">
-        <div class="pref-title"><strong>Marketing cookies</strong></div>
-        <div class="pref-desc muted">Used to show more relevant content or ads across the web (optional).</div>
-        <div class="pref-toggle">
-          <label class="switch">
-            <input type="checkbox" id="cookie-marketing">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:1rem; display:flex; gap:0.6rem; justify-content:flex-end;">
-      <button id="cookie-save" class="btn">Save preferences</button>
-      <button class="modal-close btn outline cookie-close">Cancel</button>
-    </div>
-  </div>
-</div>
-<script src="js/cookies.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

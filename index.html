@@ -10,6 +10,47 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <style>
     /* --------------------------
+       Shared palette (matches services.html)
+       -------------------------- */
+    :root{
+      --accent-brown: #8B5A2B;        /* primary warm/brown accent */
+      --accent-brown-2: #A06B3A;      /* secondary warm accent */
+      --c-secondary: var(--accent-brown);
+      --c-accent: var(--accent-brown-2);
+
+      /* surface / text tokens */
+      --c-bg: #ffffff;
+      --c-surface: #ffffff;
+      --c-border: rgba(17,17,17,0.06);
+      --c-text: #111214;
+      --c-text-muted: #6b6b6b;
+
+      /* shadows & transitions */
+      --shadow: 0 8px 28px rgba(28,18,12,0.08);
+      --shadow-hover: 0 10px 30px rgba(17,12,8,0.06);
+      --transition: cubic-bezier(.2,.9,.2,1);
+
+      /* small UI tokens */
+      --dot-bg: rgba(255,255,255,0.6);
+      --overlay-start: rgba(139,90,43,0.18);
+      --overlay-end: rgba(139,90,43,0.06);
+    }
+
+    /* dark theme overrides (matching look & feel of services.html dark mode) */
+    body.theme-dark {
+      --c-bg: #0b0f12;
+      --c-surface: #0f1720;
+      --c-border: rgba(255,255,255,0.05);
+      --c-text: #e6eef6;
+      --c-text-muted: #9aa0a6;
+      --shadow: 0 10px 40px rgba(2,6,10,0.6);
+      --shadow-hover: 0 12px 42px rgba(2,6,10,0.55);
+      --dot-bg: rgba(255,255,255,0.08);
+      --overlay-start: rgba(0,0,0,0.5);
+      --overlay-end: rgba(0,0,0,0.2);
+    }
+
+    /* --------------------------
        Hero slider & headline
        -------------------------- */
     .hero-slider {
@@ -18,7 +59,7 @@
       height: clamp(340px, 36vh, 560px);
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 8px 28px rgba(28,18,12,0.08);
+      box-shadow: var(--shadow);
       background: var(--c-bg);
     }
     .hero-slide {
@@ -43,12 +84,12 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(44,24,16,0.18), rgba(44,24,16,0.06));
+      background: linear-gradient(180deg, var(--overlay-start), var(--overlay-end));
       mix-blend-mode: multiply;
     }
 
     .hero-dots { position:absolute; left:1rem; bottom:1rem; display:flex; gap:0.5rem; z-index:10; }
-    .hero-dot { width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,0.6); border:1px solid rgba(44,24,16,0.12); transition: transform 180ms; }
+    .hero-dot { width:10px; height:10px; border-radius:50%; background: var(--dot-bg); border:1px solid rgba(139,90,43,0.12); transition: transform 180ms; }
     .hero-dot.is-active { transform: scale(1.25); background: var(--c-secondary); }
 
     /* HERO CONTENT: headline stylings */
@@ -164,10 +205,10 @@
       object-fit: cover;
       object-position: 50% 28%;
       border-radius: 8px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow);
     }
 
-    /* Buttons — brown primary, outlined variant */
+    /* Buttons — brown primary, outlined variant (uses palette tokens) */
     .btn {
       background: var(--c-secondary);
       color: white;

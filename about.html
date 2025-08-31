@@ -7,6 +7,173 @@
   <meta name="description" content="About KIMSU Specialist Centre — our mission, vision and team." />
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* --------------------------
+       Shared palette (from services.html)
+       -------------------------- */
+    :root{
+      --accent-brown: #8B5A2B;        /* primary warm/brown accent */
+      --accent-brown-2: #A06B3A;      /* secondary warm accent */
+      --c-secondary: var(--accent-brown);
+      --c-accent: var(--accent-brown-2);
+
+      /* surface / text tokens */
+      --c-bg: #ffffff;
+      --c-surface: #ffffff;
+      --c-border: rgba(17,17,17,0.06);
+      --c-text: #111214;
+      --c-text-muted: #6b6b6b;
+
+      /* shadows & transitions */
+      --shadow: 0 10px 28px rgba(28,18,12,0.06);
+      --shadow-soft: 0 8px 24px rgba(17,12,8,0.06);
+      --shadow-strong: 0 12px 36px rgba(17,12,8,0.09);
+      --transition: cubic-bezier(.2,.9,.2,1);
+
+      /* radii */
+      --radius-lg: 12px;
+    }
+
+    /* dark theme variables matching services.html */
+    body.theme-dark {
+      --c-bg: #0b0f12;
+      --c-surface: #0f1720;
+      --c-border: rgba(255,255,255,0.05);
+      --c-text: #e6eef6;
+      --c-text-muted: #9aa0a6;
+      --shadow: 0 10px 40px rgba(2,6,10,0.6);
+      --shadow-soft: 0 10px 28px rgba(2,6,10,0.45);
+      --shadow-strong: 0 18px 48px rgba(2,6,10,0.55);
+    }
+
+    /* ---------- Targeted about page styles (now theme-aware) ---------- */
+
+    /* Make sure buttons don't wrap and match brown accent */
+    .btn {
+      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      background: var(--c-secondary);
+      color: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+    }
+    .btn.small { padding:8px 12px; border-radius:8px; }
+    .btn.outline {
+      background: transparent;
+      color: var(--c-secondary);
+      border: 1px solid var(--c-secondary);
+      box-shadow: none;
+    }
+
+    /* About banner: keep whole photo visible, slightly smaller and framed */
+    .about-banner {
+      max-width: 1200px;
+      margin: 1.25rem auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+      box-shadow: var(--shadow);
+      background: var(--c-surface);
+      padding: 0.4rem;
+      color: var(--c-text);
+    }
+
+    /* Use aspect-ratio and object-fit: contain to avoid cropping */
+    .about-banner .banner-media {
+      width:100%;
+      max-height: 420px; /* slightly smaller than before */
+      display:block;
+      background: var(--c-surface);
+      border-radius: 10px;
+      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 0.25rem;
+    }
+    .about-banner .banner-media img {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;   /* show the full image without cropping */
+      object-position: center;
+      border-radius:8px;
+      display:block;
+      box-shadow: var(--shadow-soft);
+      background: linear-gradient(180deg, rgba(250,245,240,0.6), rgba(255,255,255,0.6));
+    }
+
+    /* Caption area */
+    .about-banner .banner-caption {
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0.6rem 0.4rem;
+      color:var(--c-text);
+    }
+    .about-banner .banner-caption p { margin:0; color:var(--c-text-muted); }
+    .about-banner .banner-caption .caption-actions { display:flex; gap:0.6rem; }
+
+    /* Replace stats with resources: creative right-column card */
+    .resources-grid {
+      max-width:1200px;
+      margin:1rem auto;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:1rem;
+      align-items:start;
+    }
+    .resources-card {
+      border-radius:12px;
+      padding:1rem;
+      background: var(--c-surface);
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow);
+      color: var(--c-text);
+    }
+    .resources-card h3 { margin-top:0; }
+    .resource-list { margin:0; padding-left:1rem; color:var(--c-text-muted); }
+
+    .community-card {
+      border-radius:12px;
+      padding:1rem;
+      background: var(--c-surface);
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow);
+      color: var(--c-text);
+    }
+
+    /* Timeline & FAQ card styles pulled into theme tokens */
+    .card {
+      background: var(--c-surface);
+      border-radius:12px;
+      padding:1rem;
+      border:1px solid var(--c-border);
+      box-shadow: var(--shadow);
+      color: var(--c-text);
+    }
+
+    /* Responsive: stack columns smaller screens */
+    @media (max-width: 980px) {
+      .resources-grid { grid-template-columns: 1fr; }
+      .about-banner .banner-media img { max-height: 300px; }
+    }
+    @media (max-width: 520px) {
+      .about-banner { padding: 0.25rem; }
+      .about-banner .banner-media img { max-height: 220px; }
+    }
+
+    /* subtle focus styles (matching services page) */
+    .btn:focus, .link:focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset:3px; border-radius:8px; }
+  </style>
 </head>
 <body class="theme-light" itemscope itemtype="https://schema.org/Hospital">
 
@@ -36,18 +203,25 @@
       <p>We are a specialist hospital in Meru offering friendly, modern urology care. Our team is small but experienced, and we work with the local community and nearby Kenya Methodist University to make healthcare simple and reliable.</p>
     </section>
 
-    <!-- Clinic reception banner -->
-    <section class="about-banner" data-animate>
-      <figure style="margin:0">
-        <img src="assets/images/clinic-reception-01.jpg"
-             alt="Clinic reception and waiting area at KIMSU"
-             loading="lazy"
-             width="1200" height="400">
+    <!-- Clinic reception banner (keeps entire image visible, slightly smaller) -->
+    <section class="about-banner" data-animate aria-label="Clinic reception">
+      <figure class="banner-media" style="margin:0;">
+        <picture>
+          <!-- responsive sources: adapt if you have alternatives -->
+          <source srcset="assets/images/clinic-reception-01-1200.jpg 1200w, assets/images/clinic-reception-01.jpg 1600w" type="image/jpeg">
+          <img src="assets/images/clinic-reception-01.jpg"
+               alt="Clinic reception and waiting area at KIMSU"
+               loading="lazy"
+               width="1200" height="400">
+        </picture>
       </figure>
 
-      <div class="banner-caption">
+      <div class="banner-caption" role="note" aria-hidden="false">
         <p>A clean, welcoming reception and waiting area — comfortable seating, clear signage and a friendly front desk to help you when you arrive.</p>
-        <a class="btn small" href="contact.html">Find us & get directions</a>
+        <div class="caption-actions">
+          <a class="btn small" href="contact.html"><i class="fa fa-map-marker-alt"></i> Find us & get directions</a>
+          <a class="btn outline small" href="appointments.html"><i class="fa fa-calendar-plus"></i> Make an appointment</a>
+        </div>
       </div>
     </section>
 
@@ -109,27 +283,50 @@
       </div>
     </section>
 
-    <!-- Stats and Testimonial -->
-    <section class="stats-test wrap" data-animate>
-      <div class="stats-grid" data-animate>
-        <div class="stat card">
-          <h3>8,000+</h3>
-          <p class="muted">Patients seen (since opening)</p>
+    <!-- Replaced statistics with creative Patient resources & Community blocks -->
+    <section class="resources-grid" data-animate aria-label="Patient resources and community">
+      <div class="resources-card" role="region" aria-labelledby="resources-title">
+        <h3 id="resources-title">Patient resources & support</h3>
+        <p class="muted">Practical support, clear instructions and tools to help during and after care.</p>
+
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:0.7rem; margin-top:0.8rem;">
+          <div>
+            <h4>Care guides</h4>
+            <p class="muted">Short, plain-language leaflets for pre-op and post-op care — what to expect, wound care and pain control.</p>
+          </div>
+          <div>
+            <h4>Quick checks</h4>
+            <p class="muted">Nurse-led clinics for stent removal, wound review and catheter advice to reduce unnecessary return visits.</p>
+          </div>
         </div>
-        <div class="stat card">
-          <h3>4</h3>
-          <p class="muted">Specialist clinicians</p>
-        </div>
-        <div class="stat card">
-          <h3>95%</h3>
-          <p class="muted">Patient satisfaction (simple survey)</p>
+
+        <div style="margin-top:0.8rem;">
+          <h4>Useful downloads</h4>
+          <ul class="resource-list">
+            <li><a class="link" href="assets/docs/pre-op-instructions.pdf">Pre-op instructions (PDF)</a></li>
+            <li><a class="link" href="assets/docs/stent-removal-guide.pdf">Stent removal guide</a></li>
+            <li><a class="link" href="assets/docs/aftercare-checklist.pdf">Aftercare checklist</a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="testimonial card" data-animate>
-        <h3>Patient story</h3>
-        <p class="muted">"I was worried about my kidney stones. The team explained everything and I had a simple procedure that helped me return to normal life quickly. The nurses were kind and the doctor listened to my questions." — <strong>Sam M.</strong></p>
-      </div>
+      <aside class="community-card" role="complementary" aria-labelledby="community-title">
+        <h3 id="community-title">Community & education</h3>
+        <p class="muted">We run practical health talks and free screening days for common urology issues. We also partner with local institutions for student placements and training.</p>
+
+        <div style="margin-top:0.8rem;">
+          <strong>Planned activities</strong>
+          <ul class="muted" style="margin-top:0.4rem;">
+            <li>Monthly prostate awareness talks (open to public)</li>
+            <li>Free hypertension & urine testing day (quarterly)</li>
+            <li>Training placements for nursing students</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:0.8rem;">
+          <a class="btn small" href="contact.html"><i class="fa fa-envelope"></i> Get involved / Refer a group</a>
+        </div>
+      </aside>
     </section>
 
     <!-- Timeline -->
@@ -168,8 +365,24 @@
     </div>
   </footer>
 
-  <!-- Cookie banner + modal markup (unchanged) -->
+  <!-- cookie banner placeholder (unchanged) -->
   <div id="cookie-banner" class="cookie-banner" aria-hidden="true">...</div>
+
+  <script>
+    // Set current year (small helper)
+    (function(){ const y = new Date().getFullYear(); document.getElementById('year')?.replaceWith(document.createTextNode(y)); })();
+
+    // If you use a theme toggle button (btn-theme-2) — lightly support toggling here:
+    (function(){
+      const btn = document.getElementById('btn-theme-2');
+      if(!btn) return;
+      btn.addEventListener('click', () => {
+        const root = document.documentElement;
+        if(root.classList.contains('theme-dark')) { root.classList.remove('theme-dark'); root.classList.add('theme-light'); }
+        else { root.classList.remove('theme-light'); root.classList.add('theme-dark'); }
+      });
+    })();
+  </script>
 
   <script src="js/cookies.js"></script>
   <script src="js/main.js"></script>

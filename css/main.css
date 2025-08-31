@@ -1089,3 +1089,465 @@ a.btn.outline:hover {
 .nav.nav-open a {
   padding: 0.75rem; 
 }
+
+
+/* ===========================
+   Button / action formatting
+   =========================== */
+
+/* Keep button text on one line (but allow wrap on very small screens) */
+.btn,
+a.btn,
+button.btn {
+  white-space: nowrap;         /* don't break label across lines */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;             /* avoid shrinking that breaks text */
+  text-decoration: none;
+}
+
+/* Ensure small variant is still compact */
+.btn.small {
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  min-width: 10ch;            /* reasonable minimum to reduce wrapping */
+}
+
+/* Make outline and primary visually consistent */
+.btn.outline { white-space: nowrap; }
+
+/* Card-foot (where View/Book sit) - force side-by-side where possible */
+.card-foot {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:0.6rem;
+  flex-wrap: nowrap;          /* keep buttons on one row */
+}
+
+/* Prevent links inside card-foot from wrapping themselves */
+.card-foot .btn { white-space: nowrap; }
+
+/* When container is too narrow (mobile), allow wrapping gracefully */
+@media (max-width: 420px) {
+  .card-foot {
+    flex-wrap: wrap;
+    gap:0.5rem;
+  }
+  .btn, .btn.small {
+    white-space: normal;      /* allow wrap on very small screens */
+    min-width: 0;
+  }
+}
+
+/* Make buttons respond visually (subtle) */
+.btn { transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease; }
+.btn:active { transform: translateY(0); }
+
+/* ===========================
+   Services offered — prettier
+   =========================== */
+
+/* Wrap the big block in a gentle paper card with a styled header */
+.services-list {
+  position: relative;
+  padding: 1.15rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,245,240,0.98));
+  border: 1px solid rgba(17,12,8,0.06);
+  box-shadow: 0 10px 28px rgba(17,12,8,0.04);
+}
+
+/* Fancy header bar for the grouped services block */
+.services-list > h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: -0.9rem 0 0.9rem -0.9rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px 10px 8px 8px;
+  background: linear-gradient(90deg, rgba(139,90,43,0.06), rgba(160,100,50,0.02));
+  color: var(--accent-brown, #8B5A2B);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 1px solid rgba(139,90,43,0.06);
+  box-shadow: 0 6px 18px rgba(139,90,43,0.03) inset;
+}
+
+/* Give each service group a subtle card feel and spacing */
+.service-group {
+  padding: 0.65rem;
+  border-radius: 8px;
+  background: transparent;
+  border-left: 3px solid transparent;
+  transition: border-color .18s ease, background-color .18s ease;
+}
+.service-group:hover {
+  background: rgba(139,90,43,0.02);
+  border-left-color: var(--accent-brown, #8B5A2B);
+}
+
+/* Decorative heading with an accent dot */
+.service-group h4 {
+  margin: 0 0 0.45rem 0;
+  display:flex;
+  gap:0.6rem;
+  align-items:center;
+  font-size:1rem;
+}
+.service-group h4::before {
+  content: "";
+  width:10px; height:10px; border-radius:50%;
+  background: linear-gradient(180deg, var(--accent-brown, #8B5A2B), var(--accent-brown-2, #A06B3A));
+  box-shadow: 0 2px 6px rgba(139,90,43,0.12);
+  display:inline-block;
+}
+
+/* Tidy list layout, multi-column on wide screens */
+.service-group ul {
+  margin: 0.45rem 0 0 0.95rem;
+  padding: 0;
+  list-style: disc;
+  column-gap: 28px;
+}
+@media (min-width: 980px) {
+  .service-group ul { columns: 2; }   /* two columns for readability */
+}
+@media (max-width: 980px) {
+  .service-group ul { columns: 1; }
+}
+
+/* Improve spacing of the right aside and tags */
+.quick-aside { padding: 1rem; border-radius: 10px; }
+.tag { font-size:0.9rem; padding:6px 10px; }
+
+/* subtle responsive tweaks to keep the two-column services-full dynamic */
+.services-full {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1rem;
+}
+@media (max-width: 980px) {
+  .services-full { grid-template-columns: 1fr; }
+}
+
+/* Accessibility: visible focus styles for keyboard users */
+.btn:focus, .acc-toggle:focus, .card-foot .btn:focus {
+  outline: 3px solid rgba(139,90,43,0.16);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+
+/* -------------------------
+   Global dark-mode fixes
+   ------------------------- */
+.theme-dark body,
+.theme-dark .wrap,
+.theme-dark .card,
+.theme-dark .modal-panel,
+.theme-dark .doctor-card,
+.theme-dark .service-card,
+.theme-dark .services-list,
+.theme-dark .quick-aside,
+.theme-dark .page-hero,
+.theme-dark .clinic-banner {
+  color: var(--c-text);
+  background: none;
+}
+
+/* General card backgrounds and borders */
+.theme-dark .card,
+.theme-dark .service-card,
+.theme-dark .services-list,
+.theme-dark .quick-aside,
+.theme-dark .clinic-caption,
+.theme-dark .clinic-banner .banner-media {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Page hero and kicker */
+.theme-dark .page-hero {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--c-border);
+}
+.theme-dark .hero-kicker {
+  background: linear-gradient(90deg, rgba(184,134,88,0.06), rgba(160,100,50,0.03));
+  color: var(--accent-brown);
+  border: 1px solid rgba(184,134,88,0.06);
+}
+
+/* Text muted */
+.theme-dark .muted,
+.theme-dark p.muted,
+.theme-dark .muted-list li {
+  color: var(--c-text-muted);
+}
+
+/* Buttons */
+.theme-dark .btn {
+  background: var(--accent-brown);
+  color: #fff;
+  border: 1px solid rgba(0,0,0,0.18);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+.theme-dark .btn.outline {
+  background: transparent;
+  color: var(--accent-brown);
+  border: 1px solid rgba(184,134,88,0.18);
+}
+
+/* Outline small variations (ensure contrast) */
+.theme-dark .btn.small.outline {
+  background: rgba(184,134,88,0.03);
+  color: var(--accent-brown);
+}
+
+/* Accents for service headings and hover states */
+.theme-dark .service-group:hover {
+  background: rgba(184,134,88,0.03);
+  border-left-color: var(--accent-brown);
+}
+
+/* Hero dots (if present) — keep visible on dark bg */
+.theme-dark .hero-dots .hero-dot {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.06);
+}
+.theme-dark .hero-dots .hero-dot.is-active {
+  background: var(--accent-brown);
+}
+
+/* Modals */
+.theme-dark .modal,
+.theme-dark .modal-panel {
+  background: linear-gradient(180deg, #111111, #0f0f0f);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.7);
+}
+
+/* Team card image overlays: ensure captions readable */
+.theme-dark .team-card h4,
+.theme-dark .team-card p {
+  color: var(--c-text);
+}
+
+/* Clinic banner caption */
+.theme-dark .clinic-caption {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: var(--c-text);
+  border-top: 1px solid var(--c-border);
+}
+
+/* Keep images unchanged (no invert) — ensures photos remain natural */
+.theme-dark img {
+  filter: none;
+}
+
+/* Fallback: if body uses theme-light/theme-dark class toggles use it,
+   otherwise OS preference will apply due to earlier rule. */
+
+/* Accessibility: ensure focus ring visible against dark */
+.theme-dark .btn:focus, .theme-dark .acc-toggle:focus {
+  outline: 3px solid rgba(184,134,88,0.18);
+  outline-offset: 3px;
+}
+
+/* ===== Responsive doctors layout & card fixes ===== */
+
+/* Grid that automatically fits cards to available width */
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: start;
+  margin: 0;
+}
+
+/* Card container: flexible row (image + body) with safe wrapping */
+.doctor-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  box-shadow: var(--shadow, 0 6px 18px rgba(0,0,0,0.04));
+  min-height: 120px;
+  box-sizing: border-box;
+  overflow: hidden;           /* prevents content spilling out */
+}
+
+/* Image column: fixed square on larger screens */
+.doctor-media {
+  flex: 0 0 110px;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.doctor-media img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Body column: allow text to wrap, prevent overflow pushing layout */
+.doctor-body {
+  flex: 1 1 auto;
+  min-width: 0;                 /* critical to allow text wrapping in flex children */
+  overflow: visible;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.doctor-body h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.doctor-body p {
+  margin: 0.15rem 0;
+  color: var(--c-text-muted, #666);
+  line-height: 1.35;
+}
+
+/* Actions: buttons side-by-side and will wrap cleanly if space is tight */
+.doctor-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Make the 'view profile' link visually consistent and non-wrapping */
+.link-btn {
+  background: transparent;
+  border: none;
+  color: var(--c-secondary);
+  cursor: pointer;
+  padding: 0;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Ensure primary / outline buttons don't break text to two lines */
+.btn, .btn.small, .btn.outline.small {
+  white-space: nowrap;
+}
+
+/* Medium screens: slightly smaller image */
+@media (max-width: 720px) {
+  .doctor-media { flex: 0 0 88px; width: 88px; height: 88px; }
+  .doctor-media img { width: 88px; height: 88px; }
+  .doctor-body h3 { font-size: 1rem; }
+}
+
+/* Small phones: stack vertically so nothing is cut off */
+@media (max-width: 480px) {
+  .doctor-card {
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: stretch;
+  }
+
+  .doctor-media {
+    width: 100%;
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .doctor-media img {
+    width: 100%;
+    height: 200px;        /* choose a reasonable fixed height for photos on narrow screens */
+    object-fit: cover;    /* crop vertically if needed to keep nice composition */
+    border-radius: 8px;
+  }
+
+  .doctor-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Accessibility focus */
+.doctor-card :focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset: 3px; border-radius: 8px; }
+
+
+/* ==========================
+   KIMSU shared theme tokens
+   (Paste this at top of css/main.css)
+   ========================== */
+
+:root{
+  /* primary accents */
+  --accent-brown: #8B5A2B;
+  --accent-brown-2: #A06B3A;
+
+  /* semantic aliases */
+  --c-secondary: var(--accent-brown);
+  --c-accent: var(--accent-brown-2);
+
+  /* surfaces & text (light mode defaults) */
+  --c-bg: #ffffff;
+  --c-surface: #ffffff;
+  --c-border: rgba(17,17,17,0.06);
+  --c-text: #111214;
+  --c-text-muted: #6b6b6b;
+
+  /* shadows & UI tokens */
+  --shadow: 0 8px 28px rgba(28,18,12,0.08);
+  --shadow-soft: 0 8px 24px rgba(17,12,8,0.06);
+  --shadow-strong: 0 12px 36px rgba(17,12,8,0.09);
+  --shadow-hover: 0 10px 30px rgba(17,12,8,0.06);
+
+  --dot-bg: rgba(255,255,255,0.6);
+  --overlay-start: rgba(139,90,43,0.18);
+  --overlay-end: rgba(139,90,43,0.06);
+
+  --radius-lg: 12px;
+  --transition: cubic-bezier(.2,.9,.2,1);
+}
+
+/* Dark theme override — matches the visual intent in services.html dark mode */
+body.theme-dark,
+:root.theme-dark {
+  --c-bg: #0b0f12;
+  --c-surface: #0f1720;
+  --c-border: rgba(255,255,255,0.05);
+  --c-text: #e6eef6;
+  --c-text-muted: #9aa0a6;
+
+  --shadow: 0 10px 40px rgba(2,6,10,0.6);
+  --shadow-soft: 0 10px 28px rgba(2,6,10,0.45);
+  --shadow-strong: 0 18px 48px rgba(2,6,10,0.55);
+  --shadow-hover: 0 12px 42px rgba(2,6,10,0.55);
+
+  --dot-bg: rgba(255,255,255,0.08);
+  --overlay-start: rgba(0,0,0,0.5);
+  --overlay-end: rgba(0,0,0,0.20);
+}
+
+/* Small accessibility helpers that rely on the same accent */
+:focus-visible {
+  outline: 3px solid rgba(139,90,43,0.14);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Helpful aliases used in multiple pages */
+.bg-surface { background: var(--c-surface); }
+.text-muted { color: var(--c-text-muted); }
+.border-standard { border: 1px solid var(--c-border); }
+
+/* End of shared theme tokens */

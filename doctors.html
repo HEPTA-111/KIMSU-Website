@@ -7,6 +7,204 @@
   <meta name="description" content="Our medical team at KIMSU Specialist Centre." />
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* --- Shared theme tokens (matches services.html) --- */
+    :root{
+      --accent-brown: #8B5A2B;        /* primary warm/brown accent */
+      --accent-brown-2: #A06B3A;      /* secondary warm accent */
+      --c-secondary: var(--accent-brown);
+      --c-accent: var(--accent-brown-2);
+
+      /* surface / text tokens (light mode defaults) */
+      --c-bg: #ffffff;
+      --c-surface: #ffffff;
+      --c-border: rgba(17,17,17,0.06);
+      --c-text: #111214;
+      --c-text-muted: #6b6b6b;
+
+      /* shadows & UI tokens */
+      --shadow: 0 8px 24px rgba(17,12,8,0.06);
+      --shadow-elev: 0 14px 40px rgba(17,12,8,0.08);
+
+      /* page-specific tokens */
+      --card-radius: 12px;
+      --card-shadow: 0 8px 24px rgba(17,12,8,0.06);
+      --card-shadow-elev: 0 14px 40px rgba(17,12,8,0.08);
+
+      --transition: cubic-bezier(.2,.9,.2,1);
+
+      /* convenience aliases used below */
+      --accent: var(--c-secondary);
+      --muted: var(--c-text-muted);
+    }
+
+    /* dark theme overrides (keeps look consistent with services.html) */
+    body.theme-dark {
+      --c-bg: #0b0f12;
+      --c-surface: #0f1720;
+      --c-border: rgba(255,255,255,0.05);
+      --c-text: #e6eef6;
+      --c-text-muted: #9aa0a6;
+
+      --shadow: 0 10px 40px rgba(2,6,10,0.6);
+      --card-shadow: 0 10px 28px rgba(2,6,10,0.45);
+      --card-shadow-elev: 0 18px 48px rgba(2,6,10,0.55);
+
+      --accent: #B88658;
+      --muted: var(--c-text-muted);
+    }
+
+    /* --- Doctors page overrides: responsive layout, button formatting --- */
+
+    /* Doctors grid: responsive columns */
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    /* Card look */
+    .doctor-card {
+      display: flex;
+      gap: 1rem;
+      align-items: stretch;
+      background: var(--c-surface);
+      border-radius: var(--card-radius);
+      padding: 0.85rem;
+      border: 1px solid var(--c-border);
+      box-shadow: var(--card-shadow);
+      transition: transform .12s var(--transition), box-shadow .12s var(--transition);
+      min-height: 118px;
+      color: var(--c-text);
+    }
+    .doctor-card:focus-within, .doctor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-elev);
+    }
+
+    /* Image */
+    .doctor-media {
+      flex: 0 0 110px;
+      height: 110px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(250,245,240,0.8), transparent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .doctor-media img {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit: cover;
+      object-position: 50% 24%;
+    }
+
+    /* Body */
+    .doctor-body {
+      flex: 1 1 auto;
+      display:flex;
+      flex-direction:column;
+      gap:0.35rem;
+      min-width:0; /* allow truncation */
+      color: var(--c-text);
+    }
+    .doctor-body h3 { margin:0; font-size:1.05rem; color:var(--c-text); }
+    .doctor-body .muted { color: var(--muted); margin:0; font-size:0.95rem; }
+
+    /* Actions: side-by-side and aligned right on wide screens */
+    .doctor-actions {
+      margin-top: 0.5rem;
+      display:flex;
+      gap:0.6rem;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    /* ensure buttons don't wrap their text */
+    .doctor-actions .btn, .doctor-actions .link-btn {
+      white-space: nowrap;
+    }
+
+    /* Buttons (use shared tokens) */
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 8px 12px;
+      border-radius: 8px;
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      text-decoration:none;
+    }
+    .btn.small { padding:8px 12px; font-size:0.95rem; border-radius:8px; }
+    .btn.outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      box-shadow:none;
+    }
+
+    /* link-btn style: subtle text button */
+    .link-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight:700;
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+    .link-btn:hover, .link-btn:focus { text-decoration:underline; outline: none; }
+
+    /* smaller footprint for placeholder cards */
+    .doctor-card.placeholder { opacity: 0.98; }
+
+    /* Modal tweaks */
+    .modal .modal-panel {
+      background: var(--c-surface);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid var(--c-border);
+      box-shadow: 0 20px 50px rgba(10,10,10,0.25);
+      max-width: 720px;
+      width: calc(100% - 32px);
+      color: var(--c-text);
+    }
+    .modal .modal-close { font-size: 20px; color: var(--c-text); background: transparent; border: none; }
+
+    /* Responsive behavior */
+    @media (max-width: 1024px) {
+      .doctors-grid { grid-template-columns: repeat(2, 1fr); }
+      .doctor-card { flex-direction: row; }
+      .doctor-media { flex-basis: 96px; height: 96px; }
+    }
+    @media (max-width: 640px) {
+      .doctors-grid { grid-template-columns: 1fr; }
+      .doctor-card { gap:0.75rem; padding:0.7rem; align-items:flex-start; }
+      .doctor-media { flex-basis: 88px; height: 88px; }
+      .doctor-body h3 { font-size: 1rem; }
+      .doctor-body .muted { font-size:0.9rem; }
+    }
+
+    /* Dark mode tweaks for doctors page elements */
+    .theme-dark .doctor-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--c-border);
+      color: var(--c-text);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    }
+    .theme-dark .doctor-media { background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+    .theme-dark .doctor-body .muted { color: var(--muted); }
+    .theme-dark .modal .modal-panel { background: var(--c-surface); color:var(--c-text); border:1px solid var(--c-border); box-shadow: 0 18px 48px rgba(0,0,0,0.6); }
+
+    /* Accessibility focus */
+    .doctor-card:focus { outline: 3px solid rgba(139,90,43,0.12); outline-offset: 3px; }
+
+    /* ensure footer year shows */
+    #year { font-weight:600; }
+  </style>
 </head>
 <body class="theme-light">
 
@@ -132,19 +330,16 @@
                data-languages="English, Kiswahili"
                data-bio="Our consulting urology clinic is staffed by visiting specialists. The clinician on duty may vary week to week — we bring experienced urologists to run consult clinics so patients get access to specialist care locally. Check the schedule or contact reception for the name of this week's consulting urologist and their clinic times.">
         <div class="doctor-media">
-          <!-- use placeholder image to match coming-soon style -->
           <img src="assets/images/placeholder.png" alt="Consulting Urologist">
         </div>
 
         <div class="doctor-body">
-          <!-- Show generic title instead of a personal name -->
           <h3>Consulting Urologist</h3>
           <p class="muted small">Visiting specialist — schedule varies</p>
           <p class="muted">Availability: See schedule — visiting clinics (dates vary)</p>
 
           <div class="doctor-actions">
             <button class="link-btn" data-action="view-profile">View profile</button>
-            <!-- booking will fall back to the title when name is missing -->
             <a class="btn small" data-action="book" href="appointments.html">Book consultation</a>
           </div>
         </div>
@@ -244,6 +439,10 @@
   <!-- Script: modal + button wiring (view profile + prefill booking) -->
   <script>
     (function(){
+      // tiny helper to set current year
+      const y = new Date().getFullYear();
+      document.getElementById('year')?.replaceWith(document.createTextNode(y));
+
       // Modal elements
       const modal = document.getElementById('doctor-modal');
       const closeBtns = modal ? modal.querySelectorAll('.modal-close') : [];
@@ -328,6 +527,16 @@
             openModalFromCard(card);
           }
         });
+      });
+
+      // Theme toggle button (keeps page consistent with site)
+      document.getElementById('btn-theme-4')?.addEventListener('click', () => {
+        const html = document.documentElement;
+        if(html.classList.contains('theme-dark')) {
+          html.classList.remove('theme-dark'); html.classList.add('theme-light');
+        } else {
+          html.classList.remove('theme-light'); html.classList.add('theme-dark');
+        }
       });
     })();
   </script>
