@@ -1101,11 +1101,11 @@ a.btn.outline:hover {
 .btn,
 a.btn,
 button.btn {
-  white-space: nowrap;         /* don't break label across lines */
+  white-space: nowrap;         
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  flex-shrink: 0;             /* avoid shrinking that breaks text */
+  flex-shrink: 0;             
   text-decoration: none;
 }
 
@@ -1113,7 +1113,7 @@ button.btn {
 .btn.small {
   padding: 8px 12px;
   font-size: 0.95rem;
-  min-width: 10ch;            /* reasonable minimum to reduce wrapping */
+  min-width: 10ch;            
 }
 
 /* Make outline and primary visually consistent */
@@ -1125,7 +1125,7 @@ button.btn {
   align-items:center;
   justify-content:flex-start;
   gap:0.6rem;
-  flex-wrap: nowrap;          /* keep buttons on one row */
+  flex-wrap: nowrap;         
 }
 
 /* Prevent links inside card-foot from wrapping themselves */
@@ -1138,7 +1138,7 @@ button.btn {
     gap:0.5rem;
   }
   .btn, .btn.small {
-    white-space: normal;      /* allow wrap on very small screens */
+    white-space: normal;     
     min-width: 0;
   }
 }
