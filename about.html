@@ -9,171 +9,55 @@
   <link rel="stylesheet" href="css/main.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <style>
-    /* --------------------------
-       Shared palette (from services.html)
-       -------------------------- */
+    /* Small page-specific tokens */
     :root{
-      --accent-brown: #8B5A2B;        /* primary warm/brown accent */
-      --accent-brown-2: #A06B3A;      /* secondary warm accent */
-      --c-secondary: var(--accent-brown);
-      --c-accent: var(--accent-brown-2);
-
-      /* surface / text tokens */
-      --c-bg: #ffffff;
-      --c-surface: #ffffff;
-      --c-border: rgba(17,17,17,0.06);
-      --c-text: #111214;
-      --c-text-muted: #6b6b6b;
-
-      /* shadows & transitions */
-      --shadow: 0 10px 28px rgba(28,18,12,0.06);
-      --shadow-soft: 0 8px 24px rgba(17,12,8,0.06);
-      --shadow-strong: 0 12px 36px rgba(17,12,8,0.09);
-      --transition: cubic-bezier(.2,.9,.2,1);
-
-      /* radii */
-      --radius-lg: 12px;
+      --accent-brown: #8B5A2B;
+      --accent-brown-2: #A06B3A;
     }
 
-    /* dark theme variables matching services.html */
-    body.theme-dark {
-      --c-bg: #0b0f12;
-      --c-surface: #0f1720;
-      --c-border: rgba(255,255,255,0.05);
-      --c-text: #e6eef6;
-      --c-text-muted: #9aa0a6;
-      --shadow: 0 10px 40px rgba(2,6,10,0.6);
-      --shadow-soft: 0 10px 28px rgba(2,6,10,0.45);
-      --shadow-strong: 0 18px 48px rgba(2,6,10,0.55);
+    /* Ensure navbar link states are consistent across pages and never fall back to browser defaults */
+    .header .nav a,
+    .header .nav a:link,
+    .header .nav a:visited,
+    .header .nav a:active {
+      color: var(--c-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.22s ease, box-shadow 0.22s ease;
+    }
+    .header .nav a:hover,
+    .header .nav a:focus {
+      color: var(--accent-brown);
+    }
+    .header .nav a.active {
+      color: var(--accent-brown);
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 var(--accent-brown);
     }
 
-    /* ---------- Targeted about page styles (now theme-aware) ---------- */
-
-    /* Make sure buttons don't wrap and match brown accent */
-    .btn {
-      white-space: nowrap;
-      display:inline-flex;
-      align-items:center;
-      gap:0.5rem;
-      background: var(--c-secondary);
-      color: #fff;
-      border: 1px solid rgba(0,0,0,0.06);
-      padding: 8px 12px;
-      border-radius:8px;
-      text-decoration:none;
-    }
-    .btn.small { padding:8px 12px; border-radius:8px; }
-    .btn.outline {
-      background: transparent;
-      color: var(--c-secondary);
-      border: 1px solid var(--c-secondary);
-      box-shadow: none;
-    }
-
-    /* About banner: keep whole photo visible, slightly smaller and framed */
-    .about-banner {
-      max-width: 1200px;
-      margin: 1.25rem auto;
+    /* Match icon formatting used on the services page for consistent look */
+    .card .icon {
+      width:46px;
+      height:46px;
+      border-radius:10px;
       display:grid;
-      grid-template-columns: 1fr;
-      gap: 0.6rem;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--c-border);
-      box-shadow: var(--shadow);
-      background: var(--c-surface);
-      padding: 0.4rem;
-      color: var(--c-text);
+      place-items:center;
+      background: linear-gradient(135deg, rgba(139,90,43,0.06), rgba(160,100,50,0.03));
+      color:var(--accent-brown);
+      font-size:20px;
+      border:1px solid rgba(139,90,43,0.06);
+      flex: 0 0 auto;
     }
 
-    /* Use aspect-ratio and object-fit: contain to avoid cropping */
-    .about-banner .banner-media {
-      width:100%;
-      max-height: 420px; /* slightly smaller than before */
-      display:block;
-      background: var(--c-surface);
-      border-radius: 10px;
-      overflow: hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 0.25rem;
-    }
-    .about-banner .banner-media img {
-      width: 100%;
-      height: auto;
-      max-height: 360px;
-      object-fit: contain;   /* show the full image without cropping */
-      object-position: center;
-      border-radius:8px;
-      display:block;
-      box-shadow: var(--shadow-soft);
-      background: linear-gradient(180deg, rgba(250,245,240,0.6), rgba(255,255,255,0.6));
-    }
+    /* a few small layout touches so icon+text rows align well */
+    .card .icon + div { min-width:0; }
+    .card h3, .card h4 { margin:0 0 0.25rem 0; }
+    .card p.muted { color: var(--c-text-muted); margin:0; }
 
-    /* Caption area */
-    .about-banner .banner-caption {
-      display:flex;
-      gap:1rem;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0.6rem 0.4rem;
-      color:var(--c-text);
-    }
-    .about-banner .banner-caption p { margin:0; color:var(--c-text-muted); }
-    .about-banner .banner-caption .caption-actions { display:flex; gap:0.6rem; }
+    /* Keep focus ring consistent with site */
+    a:focus, button:focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset:3px; border-radius:8px; }
 
-    /* Replace stats with resources: creative right-column card */
-    .resources-grid {
-      max-width:1200px;
-      margin:1rem auto;
-      display:grid;
-      grid-template-columns: 1fr 340px;
-      gap:1rem;
-      align-items:start;
-    }
-    .resources-card {
-      border-radius:12px;
-      padding:1rem;
-      background: var(--c-surface);
-      border:1px solid var(--c-border);
-      box-shadow: var(--shadow);
-      color: var(--c-text);
-    }
-    .resources-card h3 { margin-top:0; }
-    .resource-list { margin:0; padding-left:1rem; color:var(--c-text-muted); }
-
-    .community-card {
-      border-radius:12px;
-      padding:1rem;
-      background: var(--c-surface);
-      border:1px solid var(--c-border);
-      box-shadow: var(--shadow);
-      color: var(--c-text);
-    }
-
-    /* Timeline & FAQ card styles pulled into theme tokens */
-    .card {
-      background: var(--c-surface);
-      border-radius:12px;
-      padding:1rem;
-      border:1px solid var(--c-border);
-      box-shadow: var(--shadow);
-      color: var(--c-text);
-    }
-
-    /* Responsive: stack columns smaller screens */
-    @media (max-width: 980px) {
-      .resources-grid { grid-template-columns: 1fr; }
-      .about-banner .banner-media img { max-height: 300px; }
-    }
-    @media (max-width: 520px) {
-      .about-banner { padding: 0.25rem; }
-      .about-banner .banner-media img { max-height: 220px; }
-    }
-
-    /* subtle focus styles (matching services page) */
-    .btn:focus, .link:focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset:3px; border-radius:8px; }
+    /* Responsive adjustments already in main.css — keep page CSS minimal */
   </style>
 </head>
 <body class="theme-light" itemscope itemtype="https://schema.org/Hospital">
@@ -184,7 +68,7 @@
       <nav class="nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="doctors.html">Doctors</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -204,11 +88,10 @@
       <p>We are a specialist hospital in Meru offering friendly, modern urology care. Our team is small but experienced, and we work with the local community and nearby Kenya Methodist University to make healthcare simple and reliable.</p>
     </section>
 
-    <!-- Clinic reception banner (keeps entire image visible, slightly smaller) -->
+    <!-- Clinic reception banner -->
     <section class="about-banner" data-animate aria-label="Clinic reception">
       <figure class="banner-media" style="margin:0;">
         <picture>
-          <!-- responsive sources: adapt if you have alternatives -->
           <source srcset="assets/images/clinic-reception-01-1200.jpg 1200w, assets/images/clinic-reception-01.jpg 1600w" type="image/jpeg">
           <img src="assets/images/clinic-reception-01.jpg"
                alt="Clinic reception and waiting area at KIMSU"
@@ -258,10 +141,10 @@
         <!-- Mission -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-bullseye"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-bullseye"></i></div>
             <div>
               <h3>Our Mission</h3>
-              <p class="muted">To provide safe and evidence-based specialist care with compassion and clear communication.</p>
+              <p class="muted">Empowering health — one life at a time.</p>
             </div>
           </div>
         </div>
@@ -269,10 +152,10 @@
         <!-- Vision -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-eye"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-eye"></i></div>
             <div>
               <h3>Our Vision</h3>
-              <p class="muted">To be the trusted specialist centre in Meru for urology and related services.</p>
+              <p class="muted">Excellence in healthcare services with a human touch.</p>
             </div>
           </div>
         </div>
@@ -280,7 +163,7 @@
         <!-- Values -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-heart"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-heart"></i></div>
             <div>
               <h3>Our Values</h3>
               <p class="muted">Respect • Safety • Honesty • Teamwork • Learning</p>
@@ -297,7 +180,7 @@
         <!-- Outpatient Clinic -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-stethoscope"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-stethoscope"></i></div>
             <div>
               <h4>Outpatient Clinic</h4>
               <p class="muted">Comfortable consultation rooms for fast and private visits.</p>
@@ -308,7 +191,7 @@
         <!-- Ultrasound & Lab -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-flask"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-flask"></i></div>
             <div>
               <h4>Ultrasound & Lab</h4>
               <p class="muted">On-site ultrasound and basic lab tests to speed up diagnosis.</p>
@@ -319,7 +202,7 @@
         <!-- Endoscopy Suite -->
         <div class="card" data-animate>
           <div style="display:flex; gap:0.85rem; align-items:flex-start;">
-            <div class="icon"><i class="fa fa-video"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa fa-video"></i></div>
             <div>
               <h4>Endoscopy Suite</h4>
               <p class="muted">Safe endoscopic procedures with trained nursing support.</p>
@@ -329,8 +212,7 @@
       </div>
     </section>
 
-
-    <!-- Replaced statistics with creative Patient resources & Community blocks -->
+    <!-- Patient resources & community -->
     <section class="resources-grid" data-animate aria-label="Patient resources and community">
       <div class="resources-card" role="region" aria-labelledby="resources-title">
         <h3 id="resources-title">Patient resources & support</h3>
@@ -412,14 +294,13 @@
     </div>
   </footer>
 
-  <!-- cookie banner placeholder (unchanged) -->
   <div id="cookie-banner" class="cookie-banner" aria-hidden="true">...</div>
 
   <script>
-    // Set current year (small helper)
+    // set the year
     (function(){ const y = new Date().getFullYear(); document.getElementById('year')?.replaceWith(document.createTextNode(y)); })();
 
-    // If you use a theme toggle button (btn-theme-2) — lightly support toggling here:
+    // theme toggle (keeps parity with other pages)
     (function(){
       const btn = document.getElementById('btn-theme-2');
       if(!btn) return;
@@ -428,6 +309,19 @@
         if(root.classList.contains('theme-dark')) { root.classList.remove('theme-dark'); root.classList.add('theme-light'); }
         else { root.classList.remove('theme-light'); root.classList.add('theme-dark'); }
       });
+    })();
+
+    // Auto-add .active to the matching nav link so you don't need to hard-code it
+    (function(){
+      try {
+        const path = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.header .nav a').forEach(a => {
+          // normalize both sides by only using file names (ignore query/hash)
+          const href = (a.getAttribute('href') || '').split('/').pop();
+          if(!href) return;
+          if(href === path) a.classList.add('active');
+        });
+      } catch (e) { /* noop */ }
     })();
   </script>
 

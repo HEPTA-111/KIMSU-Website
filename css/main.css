@@ -1486,8 +1486,6 @@ button.btn {
 .doctor-card :focus { outline: 3px solid rgba(139,90,43,0.14); outline-offset: 3px; border-radius: 8px; }
 
 
-/* === Restore small decorative & icon styles (paste at end of css/main.css) === */
-
 /* small glass token for subtle translucent backgrounds */
 :root{ --glass: rgba(255,255,255,0.6); }
 
@@ -1518,7 +1516,7 @@ button.btn {
   display:inline-block;
 }
 
-/* circular icon utility for services / team */
+
 .icon, .icon-circle{
   width:56px; height:56px; border-radius:12px;
   display:grid; place-items:center; font-size:20px;
@@ -1528,10 +1526,10 @@ button.btn {
   box-shadow: 0 6px 18px rgba(139,90,43,0.03) inset;
 }
 
-/* allow smaller icon variant */
+
 .icon.small{ width:44px; height:44px; font-size:18px; border-radius:10px; }
 
-/* team / card icon decoration (for <i> tags used as icons) */
+
 .team-card i, .pillar i, .why-card i {
   display:block;
   font-size:1.5rem;
@@ -1596,5 +1594,51 @@ button.btn {
 .icon, .service-card .icon, .team-card i { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 
+
+.service-card .icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(139,90,43,0.06), rgba(160,100,50,0.03));
+  color: var(--accent-brown, #8B5A2B);
+  font-size: 20px;
+  border: 1px solid rgba(139,90,43,0.06);
+  flex: 0 0 auto;
+  margin-top: 4px; 
+}
+
+
+.service-card .icon i,
+.service-card .icon svg {
+  font-size: 18px;
+  line-height: 1;
+}
+
+
+.service-card > div:first-child {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+
+.service-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+.service-card p.muted {
+  margin: 0;
+  color: var(--muted, var(--c-text-muted, #6b6b6b));
+  font-size: 0.95rem;
+}
+
+
+@media (max-width: 640px) {
+  .service-card .icon { width:46px; height:46px; }
+  .service-card > div:first-child { align-items: center; }
+}
 
 
